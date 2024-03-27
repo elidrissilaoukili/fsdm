@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/add.css" />
+        <title>List</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-main">
+                <img src="./images/f.jpeg" alt="" />
+                <div class="header-txt">
+                    <h1>SMI6</h1>
+                    <h3>Faculte des science Dhar el Mahraz, Fés</h3>
+                </div>
+            </div>
+
+            <div class="big-line">Lundi 5 Avril 2021</div>
+        </header>
+
+        <section>
+            <h1>Ajouter un étudiant</h1>
+
+            <div class="a-c">
+                <form action="" id="dataForm">
+                    <label for="">Entre le code:</label>
+                    <input type="text" id="code" required />
+
+                    <label for="">Entre le nom:</label>
+                    <input type="text" id="first_name" required />
+
+                    <label for="">Entre le prenome:</label>
+                    <input type="text" id="last_name" required />
+
+                    <label for="">Entre le Note:</label>
+                    <input type="text" id="note" required />
+
+                    <div class="flex-selectors">
+                        <div>
+                            <label for="">Select:</label>
+                            <select name="" id="mention" class="mention">
+                                <option>Pass</option>
+                                <option>Fail</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="">Entre le Filiere:</label>
+                            <select name="" id="" class="filiere">
+                                <option>SMI</option>
+                                <option>SMA</option>
+                                <option>Science Physique</option>
+                                <option>Science chimique</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="btns">
+                        <input type="submit" id="submit" value="add" />
+                        <input
+                            type="submit"
+                            value="Cancel"
+                            onclick="cancel()"
+                        />
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <footer>
+            <div class="links">
+                <a href="./index.html">Acceuil</a>
+                <a href="./list.html">List des étudiants</a>
+                <a href="#">Ajouter un étudiants</a>
+            </div>
+
+            <div class="footer">
+                <p>© copyrights: SMI6 2021</p>
+                <p>Faculte des science Dhar el Mahraz</p>
+                <p>smi@fsdmfes.ac.ma</p>
+            </div>
+        </footer>
+
+        <script src="./js/add.js"></script>
+    </body>
+</html>
+
+<div id="std"><script src="./js/std.js"></script></div>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Adding</title>
+    </head>
+    <body>
+        <!-- add.html -->
+        <form id="dataForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" /><br />
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" /><br />
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- add.html -->
+        <script>
+            document
+                .getElementById("dataForm")
+                .addEventListener("submit", (event) => {
+                    event.preventDefault(); // Prevent default form submission
+
+                    // Get form values
+                    var name = document.getElementById("name").value;
+                    var email = document.getElementById("email").value;
+
+                    // Create an object to store data
+                    var data = {
+                        name: name,
+                        email: email,
+                    };
+
+                    // Store data in localStorage
+                    localStorage.setItem("formData", JSON.stringify(data));
+
+                    // Redirect to show.html
+                    window.location.href = "show.html";
+
+                });
+        </script>
+    </body>
+</html>

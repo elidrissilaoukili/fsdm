@@ -1,0 +1,99 @@
+/* 
+     list.html 
+*/
+
+.info {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    font-weight: bold;
+    line-height: 4px;
+    padding: 0rem 0;
+    border-top: 2px solid rgb(160, 14, 14);
+    border-bottom: 2px solid rgb(160, 14, 14);
+}
+
+.info span {
+    background-color: rgba(215, 210, 210, 0.542);
+    padding: 0 2px;
+    border-radius: 3px;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-size: 18px;
+}
+
+th,
+td {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    padding: 0.5rem 1rem;
+}
+
+thead tr {
+    background-color: rgba(236, 236, 236, 0.596);
+}
+
+.table {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.flex-list-h {
+    display: flex;
+    margin: 0;
+}
+
+.h-search h1 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0.5rem;
+}
+
+.list-select {
+    width: 120px;
+    height: 30px;
+    margin: 0 0.5rem;
+    border-radius: 10px;
+    outline: none;
+}
+
+.list-select option {
+    width: 120px;
+    height: 30px;
+    margin: 0 0.5rem;
+    border-radius: 10px;
+}
+
+.list-select:focus {
+    border: 2px solid rgb(160, 14, 14, 0.5);
+    box-shadow: 0px 0 4px 0 rgb(160, 14, 14, 0.5);
+}
+
+.searchBTN {
+    width: 60px;
+    border-radius: 10px;
+    padding: 0;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.h-search {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+/* 750px */
+@media screen and (max-width: 750px) {
+    .h-search {
+        display: block;
+    }
+}

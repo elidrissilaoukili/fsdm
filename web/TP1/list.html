@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+        <link rel="stylesheet" href="./style/style.css" />
+        <link rel="stylesheet" href="./style/list.css" />
+
+        <title>List</title>
+    </head>
+    <body onload="count(), countAvr()">
+        <header>
+            <div class="header-main">
+                <img src="./images/f.jpeg" alt="" />
+                <div class="header-txt">
+                    <h1>SMI6</h1>
+                    <h3>Faculte des science Dhar el Mahraz, Fés</h3>
+                </div>
+            </div>
+
+            <div class="big-line">Lundi 5 Avril 2021</div>
+        </header>
+
+        <section>
+            <h1>List des étudiant de la filiere: SMI</h1>
+            <div class="info">
+                <p>Nombre des étudiants réussis: <span id="cnt"></span></p>
+                <p>Melleure note: <span id="avr"></span></p>
+            </div>
+
+            <div class="table" id="table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Prenome</th>
+                            <th>Nom</th>
+                            <th>Note</th>
+                            <th>Mentions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="dataTbody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            <div class="links">
+                <a href="./index.html">Acceuil</a>
+                <a href="#">List des étudiants</a>
+                <a href="./add.html">Ajouter un étudiants</a>
+            </div>
+
+            <div class="footer">
+                <p>© copyrights: SMI6 2021</p>
+                <p>Faculte des science Dhar el Mahraz</p>
+                <p>smi@fsdmfes.ac.ma</p>
+            </div>
+        </footer>
+
+        <script src="./js/list.js"></script>
+        <script src="./js/counter.js"></script>
+    </body>
+</html>
+
+
+<div id="std"><script src="./js/std.js"></script></div>

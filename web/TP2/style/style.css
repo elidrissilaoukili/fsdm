@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+
+/*
+    Styling for Header and Footer 
+    and some common elements
+*/
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 0.5rem;
+
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+header {
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem 0;
+}
+
+.header-txt {
+    line-height: 6px;
+    margin-left: 9rem;
+}
+
+.big-line {
+    background-color: rgb(160, 14, 14);
+    padding: 0.2rem 0;
+    text-align: right;
+    color: white;
+}
+
+header img {
+    width: 100px;
+    position: absolute;
+    margin-left: 2rem;
+}
+
+.header-main {
+    display: flex;
+}
+
+section {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.sec-main {
+    border: 2px solid rgb(160, 14, 14);
+    margin-bottom: 3rem;
+}
+
+.paragraph {
+    padding: 2rem 0 0 0;
+    border-top: 4px solid rgb(160, 14, 14);
+}
+
+.links {
+    padding: 0.5rem 0;
+    border-top: 2px solid rgb(160, 14, 14);
+    border-bottom: 2px solid rgb(160, 14, 14);
+}
+
+footer {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.footer {
+    margin-top: 2rem;
+    line-height: 5px;
+    text-align: center;
+    color: rgb(160, 14, 14);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+footer a {
+    color: black;
+    font-weight: bold;
+    margin: 0;
+    padding: 0.5rem 0.2rem;
+    border-collapse: collapse;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+footer a:hover {
+    background-color: rgba(153, 22, 22, 0.1);
+    transition: 0.2s;
+}

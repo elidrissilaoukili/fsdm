@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shower</title>
+    </head>
+    <body>
+        <!-- show.html -->
+        <div id="showData"></div>
+
+        <br>
+        <a href="./add.html">Add</a>
+
+        <script>
+            // Retrieve data from localStorage
+            var storedData = localStorage.getItem("formData");
+            if (storedData) {
+                var data = JSON.parse(storedData);
+
+                // Display data on the page
+                document.getElementById("showData").innerHTML = `
+                    <p>Name: ${data.name}</p>
+                    <p>Email: ${data.email}</p>
+                `;
+            } else {
+                document.getElementById("showData").innerHTML =
+                    "<p>No data available</p>";
+            }
+        </script>
+    </body>
+</html>
