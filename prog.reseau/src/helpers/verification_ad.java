@@ -1,8 +1,8 @@
-package reseau;
+package helpers;
 
 import java.net.InetAddress;
 
-public class chatGPThelp {
+public class verification_ad {
 
   static boolean estCorrecte(String adr) {
     String[] parties = adr.split("\\.");
