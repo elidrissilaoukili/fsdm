@@ -5,7 +5,7 @@ import java.net.InetAddress;
 
 public class ping {
 
-  public static void sendPingRequest(String ipAddress) throws Exception {
+  public static void sendPingRequest(String ipAddress) throws IOException {
     InetAddress adr = InetAddress.getByName(ipAddress);
     System.out.println("Sending ping request to " + ipAddress);
     if (adr.isReachable(12)) {
