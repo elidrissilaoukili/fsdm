@@ -3,7 +3,8 @@ package reseau;
 import java.net.InetAddress;
 
 public class verification_ad {
-     static boolean estCorrecte(String adr) {
+     @SuppressWarnings("removal")
+    static boolean estCorrecte(String adr) {
         String[] parties = adr.split("\\.");
         for (int i = 0; i < 4; i++) {
             if(new Integer (parties[i])<0 || new Integer (parties[i])>255) return false;
