@@ -11,7 +11,9 @@ END;
 /
 
 Appel:
-UPDATE etudiant SET age = 25 WHERE num_etudiant = 123;
+UPDATE ETUDIANT
+SET age = 25 
+WHERE num_etudiant = 2;
 
 -- Question 02
 CREATE OR REPLACE TRIGGER check_new_sal
