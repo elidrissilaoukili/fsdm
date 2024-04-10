@@ -1,7 +1,17 @@
 <?php
+<<<<<<< HEAD
 
 require_once '../configs/init.php';
 
+=======
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("location:login.php");
+    exit;
+}
+
+require_once '../configs/init.php';
+>>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
 include('./templates/header.php');
 ?>
 

@@ -1,4 +1,4 @@
-package reseau;
+package reseautp2;
 
 import java.io.IOException;
 import java.net.URL;

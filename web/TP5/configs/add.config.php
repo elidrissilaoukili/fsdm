@@ -2,6 +2,10 @@
 
 $code = $first_name = $last_name = $note = $pass = "";
 $errors = array('code' => '', 'first_name' => '', 'last_name' => '', 'note' => '', 'pass' => '');
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
 if (isset($_POST['submit'])) {
 
     # pass
@@ -59,6 +63,7 @@ if (isset($_POST['submit'])) {
     }
 
 
+<<<<<<< HEAD
 
     if (array_filter($errors)) {
         //
@@ -76,6 +81,26 @@ if (isset($_POST['submit'])) {
 
         // header('location: sentData.php');
     }
+=======
+    // if (array_filter($errors)) {
+    //    $first_name = test_inputs($_POST["first_name"]);
+    //     $last_name = test_inputs($_POST["last_name"]);
+    //     $code = test_inputs($_POST["code"]);
+    //     $note = test_inputs($_POST["note"]);
+    //     $pass = test_inputs($_POST["pass"]);
+    //     $comment = test_inputs($_POST["comment"]);
+    //     $gender = test_inputs($_POST["gender"]);
+    //     $semester = test_inputs($_POST["semester"]);
+    //     $major = test_inputs($_POST["major"]);
+    // }
+    //  else {
+
+        
+
+    //     //    
+    // }
+     header('location: sentData.php');
+>>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
 }
 
 function test_inputs($data)

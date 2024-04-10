@@ -49,12 +49,24 @@ function getListeParFiliere($filiere)
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+<<<<<<< HEAD
     $f = '';
     $f = $_POST['filiere'];
     if ($f == '') {
         $std = $students;
     } else {
         $std = getListeParFiliere($f);
+=======
+
+    if (isset($_POST['filiere'])) {
+        $f = '';
+        $f = $_POST['filiere'];
+        if ($f == '') {
+            $std = $students;
+        } else {
+            $std = getListeParFiliere($f);
+        }
+>>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
     }
 } else {
     $f = '';
@@ -128,4 +140,8 @@ function getMention($note)
 //         echo "<td>" . getMention($student['note']) . "</td>";
 //         echo '</tr>';
 //     }
+<<<<<<< HEAD
 // }
+=======
+// }
+>>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
