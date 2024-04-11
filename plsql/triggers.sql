@@ -12,8 +12,9 @@ END;
 
 Appel:
 UPDATE ETUDIANT
-SET age = 25 
+SET age = 22
 WHERE num_etudiant = 2;
+SELECT * FROM Etudiant;
 
 -- Question 02
 CREATE OR REPLACE TRIGGER check_new_sal
@@ -42,7 +43,8 @@ END;
 /
 -- Appel
 INSERT INTO Etudiant (nom, prenom, ...) VALUES ('John', 'Doe', ...);
-
+INSERT INTO ETUDIANT VALUES (99, 'ETUDIANT_99', 'ETUDIANT_99', 'HOWAHOWA', 55);
+SELECT * FROM Etudiant;
 
 -- Question 04
 CREATE OR REPLACE TRIGGER update_stock_commande

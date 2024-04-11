@@ -1,0 +1,32 @@
+DROP TABLE BUDGET_SEUIL;
+CREATE TABLE BUDGET_SEUIL(
+    NUM_OPERATION NUMBER,
+    DATE_OPERATION DATE,
+    MONTANT NUMBER
+);
+
+-- PARAMETRE
+DECLARE 
+    v_seuil NUMBER := &v_seuil;
+
+    CURSOR debit_cursor IS
+    SELECT NUM_OPERATION, DATE_OPERATION, MONTANT
+        FROM BUDGET
+        WHERE MONTANT > v_seuil AND CATEGORIE = 'Debit'
+
+    BEGIN
+        FOR debit_record IN debit_cursor(v_seuil) LOOP
+            INSERT INTO
+                BUDGET_SEUIL(NUM_OPERATION, DATE_OPERATION, MONTANT)
+            VALUES
+                (debit_record.NUM_OPERATION, debit_record.DATE_OPERATION, debit_record.MONTANT);
+        END LOOP;
+
+        DBMS_OUTPUT.PUT_LINE('INSERTION COMPLETED SUCCESSFUL');   
+
+EXCEPTION 
+    WHEN others THEN
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+
+END;
+/
