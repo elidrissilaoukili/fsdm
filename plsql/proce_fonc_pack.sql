@@ -114,7 +114,9 @@ WHEN OTHERS THEN RETURN NULL;
 
 END;
 
-/ DECLARE v_chef_nom VARCHAR2(100);
+/ 
+
+DECLARE v_chef_nom VARCHAR2(100);
 
 BEGIN -- ‐‐ Remplacez le numéro d'employé par celui que vous souhaitez vérifier
 v_chef_nom := get_chef_nom(7902);
@@ -123,9 +125,10 @@ DBMS_OUTPUT.PUT_LINE('Nom du chef: ' || v_chef_nom);
 
 END;
 
-/ -- QuesƟon 5
+/ -- Quesion 5
 CREATE
-OR REPLACE PROCEDURE augmenter_salaires IS BEGIN -- Augmenter les salaires pour le grade 1 et grade 2 (10 %)
+OR REPLACE PROCEDURE augmenter_salaires IS BEGIN 
+-- Augmenter les salaires pour le grade 1 et grade 2 (10 %)
 UPDATE
     emp
 SET
@@ -158,7 +161,8 @@ WHEN OTHERS THEN DBMS_OUTPUT.PUT_LINE('Erreur : ' || SQLERRM);
 
 END;
 
-/ BEGIN augmenter_salaires;
+/ 
+BEGIN augmenter_salaires;
 
 END;
 
@@ -189,7 +193,8 @@ SELECT
 FROM
     dual;
 
-ou DECLARE v_salaire_max NUMBER;
+-- ou 
+DECLARE v_salaire_max NUMBER;
 
 BEGIN v_salaire_max := salaire_max_departement(20);
 

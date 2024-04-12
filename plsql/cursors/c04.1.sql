@@ -7,26 +7,39 @@ CREATE TABLE BUDGET_SEUIL(
 
 -- PARAMETRE
 DECLARE 
-    v_seuil NUMBER := &v_seuil;
-
+    v_seuil NUMBER := 10;
+    
+    -- Declare cursor explicitly
     CURSOR debit_cursor IS
-    SELECT NUM_OPERATION, DATE_OPERATION, MONTANT
+        SELECT NUM_OPERATION, DATE_OPERATION, MONTANT
         FROM BUDGET
-        WHERE MONTANT > v_seuil AND CATEGORIE = 'Debit'
+        WHERE MONTANT > v_seuil AND CATEGORIE = 'Debit';
+    
+    -- Declare variables to store cursor data
+    v_num_operation BUDGET_SEUIL.NUM_OPERATION%TYPE;
+    v_date_operation BUDGET_SEUIL.DATE_OPERATION%TYPE;
+    v_montant BUDGET_SEUIL.MONTANT%TYPE;
+BEGIN
+    -- Open cursor
+    OPEN debit_cursor;
+    
+    -- Fetch cursor data into variables
+    LOOP
+        FETCH debit_cursor INTO v_num_operation, v_date_operation, v_montant;
+        EXIT WHEN debit_cursor%NOTFOUND;
+        
+        -- Insert fetched data into BUDGET_SEUIL table
+        INSERT INTO BUDGET_SEUIL(NUM_OPERATION, DATE_OPERATION, MONTANT)
+        VALUES (v_num_operation, v_date_operation, v_montant);
+    END LOOP;
+    
+    -- Close cursor
+    CLOSE debit_cursor;
 
-    BEGIN
-        FOR debit_record IN debit_cursor(v_seuil) LOOP
-            INSERT INTO
-                BUDGET_SEUIL(NUM_OPERATION, DATE_OPERATION, MONTANT)
-            VALUES
-                (debit_record.NUM_OPERATION, debit_record.DATE_OPERATION, debit_record.MONTANT);
-        END LOOP;
-
-        DBMS_OUTPUT.PUT_LINE('INSERTION COMPLETED SUCCESSFUL');   
+    DBMS_OUTPUT.PUT_LINE('INSERTION COMPLETED SUCCESSFUL');   
 
 EXCEPTION 
     WHEN others THEN
         DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
-
 END;
 /
