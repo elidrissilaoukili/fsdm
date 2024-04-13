@@ -1,7 +1,7 @@
 <?php
 require_once '../configs/init.php';
 
-$l = isset($_COOKIE["langue"]) ? $_COOKIE["langue"] : "ar";
+$date = isset($_COOKIE["langue"]) ? $_COOKIE["langue"] : "ar";
 $clr = isset($_COOKIE["color"]) ? $_COOKIE["color"] : "black";
 $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
 
@@ -21,23 +21,24 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
     <script src="script.js"></script>
 
     <style>
-    a,
-    h3,
-    h2,
-    h4,
-    p,
-    table,
-    td,
-    th {
-        color: <?=$clr ?>;
-        background-color: <?=$bgclr ?>;
-    }
+        a,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        table,
+        td,
+        th {
+            color: <?= $clr ?>;
+            background-color: <?= $bgclr ?>;
+        }
 
 
 
-    .connexion-option {
-        text-align: right;
-    }
+        .connexion-option {
+            text-align: right;
+        }
     </style>
 </head>
 
@@ -56,7 +57,7 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
         <!-- <div class="big-line">Lundi 5 Avril 2021</div> -->
         <!-- <div class="big-line"><?php // echo date('l/m/Y'); 
                                     ?></div> -->
-        <div class="big-line"><?php echo displayDate('ar'); ?></div>
+        <div class="big-line"><?php echo displayDate($date); ?></div>
 
 
         <div class="connexion-option">

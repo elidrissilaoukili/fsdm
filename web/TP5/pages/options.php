@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("location:login.php");
+    exit;
+}
+
 include("./templates/header.php");
 
 if (isset($_POST["submitoption"])) {
@@ -16,7 +22,7 @@ if (isset($_POST["annuler"])) {
 
 <section>
     <div class="sec-main"></div>
-    <h2>Precisez vos preferences</h2>
+    <h2>Choose your perfer theme</h2>
     <div class="line"></div>
     <div>
         <form action="options.php" method="post">
@@ -26,9 +32,9 @@ if (isset($_POST["annuler"])) {
                     <th>Language</th>
                     <td>
                         <select name="langua" id="langua">
-                            <option value="AR" name="AR" selected>العربية</option>
-                            <option value="FR" name="FR">Francais</option>
-                            <option value="EN" name="EN">English</option>
+                            <option value="ar" name="ar" selected>العربية</option>
+                            <option value="fr" name="fr">Francais</option>
+                            <option value="en" name="en">English</option>
                         </select>
                     </td>
                 </tr>
@@ -36,6 +42,10 @@ if (isset($_POST["annuler"])) {
                     <th>text color</th>
                     <td>
                         <div>
+                            <div class="choixcouleur" style="color: #707070;">
+                                <input type="radio" name="color" value="#707070">
+                                grey
+                            </div>
                             <div class="choixcouleur" style="color: red;">
                                 <input type="radio" name="color" value="red">
                                 red
@@ -58,6 +68,9 @@ if (isset($_POST["annuler"])) {
                     <th>back ground color</th>
                     <td>
                         <div>
+                            <div class="choixbg" >
+                                <input type="radio" name="bgcolor" value="#F7F7F7"> near white
+                            </div>
                             <div class="choixbg" style="background-color: rgb(182, 137, 137);">
                                 <input type="radio" name="bgcolor" value="rgb(178, 139, 139)"> brown
                             </div>
@@ -76,7 +89,7 @@ if (isset($_POST["annuler"])) {
 
             <div class="btns" style="padding: 5px;">
                 <input type="submit" value="submit" id="envoyer" name="submitoption">
-                <input type="submit" value="annuler" id="annuler" name="annuler">
+                <input type="submit" value="Cancel" id="annuler" name="annuler">
             </div>
         </form>
 </section>

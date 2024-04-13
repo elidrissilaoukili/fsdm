@@ -1,4 +1,10 @@
-<?php include './templates/header.php' ?>
+<?php 
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("location:login.php");
+    exit;
+}
+include './templates/header.php' ?>
 
 <section>
     <h1>Student Details:</h1>

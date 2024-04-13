@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("location:login.php");
+    exit;
+}
 include './templates/header.php';
 require_once '../configs/init.php';
 

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once 'date.php';
 require_once 'listFiliere.config.php';
 require_once 'listFiliere.config.php';
