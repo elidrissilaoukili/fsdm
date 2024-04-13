@@ -1,14 +1,10 @@
 <?php
-<<<<<<< HEAD
-require_once '../configs/init.php';;
-=======
 require_once '../configs/init.php';
 
 $l = isset($_COOKIE["langue"]) ? $_COOKIE["langue"] : "ar";
 $clr = isset($_COOKIE["color"]) ? $_COOKIE["color"] : "black";
 $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
 
->>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
 ?>
 
 <!DOCTYPE html>
@@ -22,12 +18,6 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
     <link rel="stylesheet" href=<?php echo CSSPATH . "/listFiliere.css"; ?> />
     <link rel="stylesheet" href=<?php echo CSSPATH . "/style.css"; ?> />
     <link rel="stylesheet" href=<?php echo CSSPATH . "/add.css"; ?> />
-<<<<<<< HEAD
-
-</head>
-
-<body>
-=======
     <script src="script.js"></script>
 
     <style>
@@ -53,7 +43,6 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
 
 
 <body style="color: <?= $clr ?>; background-color: <?= isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white" ?>;">
->>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
 
     <header>
         <div class="header-main">
@@ -70,8 +59,6 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
         <div class="big-line"><?php echo displayDate('ar'); ?></div>
 
 
-<<<<<<< HEAD
-=======
         <div class="connexion-option">
             <?php if (isset($_SESSION["login"])) {
                 echo "<h2>Bonjour " . $_SESSION["login"] . "</h2>";
@@ -80,5 +67,4 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
             <a href="logout.php">Log out</a> .
             <a href="options.php">Options</a>
         </div>
->>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
     </header>

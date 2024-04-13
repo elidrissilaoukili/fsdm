@@ -1,9 +1,4 @@
 <?php
-<<<<<<< HEAD
-include './templates/header.php';
-require_once '../configs/init.php';
-
-=======
 
 include './templates/header.php';
 require_once '../configs/init.php';
@@ -69,7 +64,6 @@ if (isset($_POST['cancel'])) {
     header('Location: add.php');
 }
 
->>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
 ?>
 
 <section>
