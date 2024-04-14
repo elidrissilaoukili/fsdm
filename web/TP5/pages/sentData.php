@@ -79,9 +79,6 @@ if (isset($_POST['cancel'])) {
         <h4>Note: <?php echo $note; ?> </h4>
         <h4>Pass: <?php echo $pass; ?> </h4>
         <h4>Gender: <?php echo $gender; ?> </h4>
-<<<<<<< HEAD
-        <h4>Semester validés: <?php echo $semester; ?> </h4>
-=======
         <h4>Semester validés: <br>
             <div>
                 <ol>
@@ -95,7 +92,6 @@ if (isset($_POST['cancel'])) {
                     ?>
                 </ol>
         </h4>
->>>>>>> 8321304aacd3f7516274024281e46d8ada77599e
         <h4>Filiere: <?php echo $major; ?> </h4>
         <h4>Comment: <?php echo $comment; ?> </h4>
     </div>
