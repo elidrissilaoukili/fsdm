@@ -13,7 +13,7 @@ function getListeParFiliere($filiere)
         $typ = $_POST['pf'];
         if ($typ == 'passed') {
             foreach ($students as $std) {
-                if ($std['major'] == $filiere && $std['note'] >= MOY_REUSSITE) {
+                if ($std['filiere'] == $filiere && $std['note'] >= MOY_REUSSITE) {
                     $std_s[$i] = $std;
                     $i++;
                 }
@@ -21,7 +21,7 @@ function getListeParFiliere($filiere)
         }
         if ($typ == 'failed') {
             foreach ($students as $std) {
-                if ($std['major'] == $filiere && $std['note'] < MOY_REUSSITE) {
+                if ($std['filiere'] == $filiere && $std['note'] < MOY_REUSSITE) {
                     $std_s[$i] = $std;
                     $i++;
                 }
@@ -29,7 +29,7 @@ function getListeParFiliere($filiere)
         }
         if ($typ == '') {
             foreach ($students as $std) {
-                if ($std['major'] == $filiere && $std['note']) {
+                if ($std['filiere'] == $filiere && $std['note']) {
                     $std_s[$i] = $std;
                     $i++;
                 }
@@ -37,7 +37,7 @@ function getListeParFiliere($filiere)
         }
     } else {
         foreach ($students as $std) {
-            if ($std['major'] == $filiere && $std['note']) {
+            if ($std['filiere'] == $filiere && $std['note']) {
                 $std_s[$i] = $std;
                 $i++;
             }
@@ -88,7 +88,7 @@ function getNameMax($students)
     $full_name = '';
     foreach ($students as $student) {
         if ($student['note'] == getMax($students)) {
-            $full_name = " " . $student['fname'] . " " . $student['lname'];
+            $full_name = " " . $student['prenom'] . " " . $student['nom'];
         }
     }
     return strtoupper($full_name);

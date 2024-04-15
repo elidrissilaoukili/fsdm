@@ -16,7 +16,7 @@ include("./templates/header.php");
             <div class="line"></div>
             <form action="verify.php" method="post" class="formu">
                 <div class="divform">
-                    <label for="log">login: </label>
+                    <label for="log">Username: </label>
                     <input type="text" id="log" name="login" placeholder="elidrissi" class="form-control m-2">
                 </div>
                 <div class="divform">

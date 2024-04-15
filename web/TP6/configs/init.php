@@ -5,7 +5,8 @@ require_once 'listFiliere.config.php';
 require_once 'listFiliere.config.php';
 require_once 'listStudents.config.php';
 
-require_once 'model.php';
+
+require_once 'db_connect.php';
 // require_once 'add.config.php';
 
 

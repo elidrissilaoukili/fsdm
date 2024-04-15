@@ -65,6 +65,7 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
                 echo "<h2>Bonjour " . $_SESSION["login"] . "</h2>";
             }
             ?>
+            <a href="addaccount.php">Add Student</a> .
             <a href="logout.php">Log out</a> .
             <a href="options.php">Options</a>
         </div>

@@ -6,6 +6,9 @@ if (!isset($_SESSION['login'])) {
 }
 require_once '../configs/init.php';
 include('./templates/header.php');
+
+
+
 ?>
 
 <section>
@@ -53,17 +56,11 @@ include('./templates/header.php');
                 <?php
                 foreach ($std as $student) {
                     echo '<tr>';
+                    echo "<td><a href='detailStudents.php?codeE={$student['codeE']}'>{$student['codeE']}</a></td>";
 
-                    echo "<td> <a href='detailStudents.php?
-                    code={$student['code']}&
-                    fname={$student['fname']}&
-                    lname={$student['lname']}&
-                    major={$student['major']}&
-                    note={$student['note']}'
-                    >{$student['code']}</a> </td>";
-                    echo "<td> {$student['fname']} </td>";
-                    echo "<td> {$student['lname']} </td>";
-                    echo "<td> {$student['major']} </td>";
+                    echo "<td> {$student['prenom']} </td>";
+                    echo "<td> {$student['nom']} </td>";
+                    echo "<td> {$student['filiere']} </td>";
                     echo "<td> {$student['note']} </td>";
                     echo "<td>" . getMention($student['note']) . "</td>";
                     echo '</tr>';
