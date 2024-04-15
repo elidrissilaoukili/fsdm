@@ -6,28 +6,39 @@ if (!isset($_SESSION['login'])) {
 }
 include './templates/header.php';
 
-// Assume $conn is your PDO database connection
 
-if (isset($_GET['codeE'])) {
-    $codeE = $_GET['codeE']; // No need for escaping with PDO prepared statements
-    $sql = "SELECT * FROM etudiant WHERE codeE = :codeE";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':codeE', $codeE);
-    $stmt->execute();
-    $student = $stmt->fetch(PDO::FETCH_ASSOC);
+$conn = connect_db();
+function getE($conn) {
+    if (isset($_GET['codeE'])) {
+        $codeE = $_GET['codeE']; 
+        $sql = "SELECT * FROM etudiant WHERE codeE = :codeE";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':codeE', $codeE);
+        $stmt->execute();
+        $student = $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    return $student;
 }
 
-if (isset($_POST['delete'])) {
-    $codeE_to_delete = $_POST['codeE_to_delete']; // No need for escaping with PDO prepared statements
-    $sql = "DELETE FROM etudiant WHERE codeE = :codeE_to_delete";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':codeE_to_delete', $codeE_to_delete); // Corrected parameter name here
-    if ($stmt->execute()) {
-        header('Location: listStudents.php');
-    } else {
-        echo "Query error: " . $stmt->errorInfo()[2];
+function deleteE($conn) {
+    if (isset($_POST['delete'])) {
+        $codeE_to_delete = $_POST['codeE_to_delete']; 
+        $sql = "DELETE FROM etudiant WHERE codeE = :codeE_to_delete";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':codeE_to_delete', $codeE_to_delete); 
+        if ($stmt->execute()) {
+            header('Location: listStudents.php');
+        } else {
+            echo "Query error: " . $stmt->errorInfo()[2];
+        }
     }
 }
+
+$student = getE($conn);
+deleteE($conn);
+
+
 ?>
 
 <section>

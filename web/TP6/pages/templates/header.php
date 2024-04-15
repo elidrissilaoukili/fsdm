@@ -1,4 +1,5 @@
 <?php
+
 require_once '../configs/init.php';
 
 $date = isset($_COOKIE["langue"]) ? $_COOKIE["langue"] : "ar";

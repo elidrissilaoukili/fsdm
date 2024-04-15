@@ -1,17 +1,15 @@
 <?php
 
-
-// Assuming you're already connected to the database here...
 require_once "db_connect.php";
+$conn = connect_db();
 
 // SQL query to select data from the 'etudiant' table
 $sql = "SELECT codeE, nom, prenom, filiere, note FROM etudiant";
 $stmt = $conn->query($sql);
 
-// Fetch associative array from the result set
 $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Output the associative array (you can also do further processing here)
+// Output the associative array 
 // echo '<pre>';
 // print_r($data);
 
