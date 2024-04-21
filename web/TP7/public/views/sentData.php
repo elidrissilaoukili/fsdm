@@ -1,8 +1,6 @@
 <?php
-require_once '../../app/configs/sessions.php';
-include './templates/header.php';
-require_once '../../app/configs/init.php';
 require_once '../../app/controllers/sentDataController.php';
+include './templates/header.php';
 
 
 ?>
