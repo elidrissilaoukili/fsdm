@@ -19,7 +19,10 @@ include './templates/header.php';
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post"> <!-- Added echo before $_SERVER -->
                 <input type="hidden" name="codeE_to_delete" value="<?php echo $student['codeE']; ?>"> <!-- Changed name attribute to match with POST parameter name -->
                 <input type="submit" name="delete" value="Delete" class="btn">
-                <input type="submit" name="edit" value="Edit" class="btn">
+                <?php 
+                    echo "<a href='editStudent.php?codeE={$student['codeE']}'>
+                    <input type='button' value='Edit' class='btn'></a>";
+                ?>
             </form>
 
             <?php else : ?>

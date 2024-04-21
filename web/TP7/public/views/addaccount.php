@@ -33,7 +33,7 @@ include('./templates/header.php');
                 <div>
                     <label for="">Entre le Filiere:</label>
                     <select name="filiere" id="" class="filiere">
-                        <option value="SMI">Science Math    Informatique</option>
+                        <option value="SMI">Science Math Informatique</option>
                         <option value="SMA">Science Math Application</option>
                         <option value="SMP">Science Matiere Physique</option>
                         <option value="SMC">Science Matiere chimique</option>

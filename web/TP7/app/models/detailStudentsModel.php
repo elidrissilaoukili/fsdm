@@ -16,6 +16,14 @@ function getE($conn)
     return $student;
 }
 
+
+
+
+
+
+
+
+
 function deleteE($conn)
 {
     if (isset($_POST['delete'])) {

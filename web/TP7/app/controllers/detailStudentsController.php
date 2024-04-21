@@ -6,3 +6,4 @@ require_once '../../app/models/detailStudentsModel.php';
 
 $student = getE($conn);
 deleteE($conn);
+
