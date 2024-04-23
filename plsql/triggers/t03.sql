@@ -3,6 +3,7 @@ CREATE SEQUENCE num_etudiant_seq START WITH 10 INCREMENT BY 1 NOCACHE;
 CREATE
 OR REPLACE TRIGGER auto_increment_num_etudiant BEFORE
 INSERT
+    -- OF COLUMN NUM_ETUDIANT -- trigger fires BEFORE an INSERT operation, but only if the column NUM_ETUDIANT is being inserted.
     ON Etudiant FOR EACH ROW 
 
 BEGIN 
