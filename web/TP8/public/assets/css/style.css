@@ -9,7 +9,6 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0 0.5rem;
-
     font-family: "Inconsolata", monospace;
     font-optical-sizing: auto;
     font-weight: weight;
@@ -21,6 +20,10 @@ header {
     max-width: 1000px;
     margin: auto;
     padding: 2rem 0;
+}
+
+.btn-brown {
+    background-color: brown;
 }
 
 .header-txt {
@@ -87,6 +90,7 @@ footer .links ul {
     margin: 0;
     padding: 0;
 }
+
 footer .links li {
     list-style-type: none;
     margin: 0rem;

@@ -1,4 +1,6 @@
 <?php
+
+
 require_once '../../app/configs/init.php';
 
 $date = isset($_COOKIE["langue"]) ? $_COOKIE["langue"] : "ar";
@@ -6,6 +8,8 @@ $clr = isset($_COOKIE["color"]) ? $_COOKIE["color"] : "black";
 $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +23,7 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
     <link rel="stylesheet" href=<?php echo CSSPATH . "listFiliere.css"; ?> />
     <link rel="stylesheet" href=<?php echo CSSPATH . "style.css"; ?> />
     <link rel="stylesheet" href=<?php echo CSSPATH . "add.css"; ?> />
+    <link rel="stylesheet" href=<?php echo CSSPATH . "bootstrap.min.css"; ?> />
     <script src="script.js"></script>
 
     <style>
@@ -66,9 +71,19 @@ $bgclr = isset($_COOKIE["bgcolor"]) ? $_COOKIE["bgcolor"] : "white";
                 echo "<h2>Bonjour " . $_SESSION["login"] . "</h2>";
             }
             ?>
-            <a href="addaccount.php">Add Student</a> .
-            <a href="login.php">Log in</a> .
-            <a href="logout.php">Log out</a> .
-            <a href="options.php">Options</a>
+
+            <style>
+                .btn-brown {
+                    background-color: brown;
+                    color: white;
+                    padding: 0.2rem 0.4rem;
+                }
+            </style>
+            <div class="mt-2">
+                <a href="addaccount.php" class="btn btn-brown">Add Student</a>
+                <a href="login.php" class="btn btn-brown">Log in</a>
+                <a href="logout.php" class="btn btn-brown">Log out</a>
+                <a href="options.php" class="btn btn-brown">Options</a>
+            </div>
         </div>
     </header>
