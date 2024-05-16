@@ -1,12 +1,12 @@
 <?php
-require_once('Router.php');
-$request_uri = $_SERVER['REQUEST_URI'];
-$router = new Router();
-$router->route($request_uri);
+// require_once('Router.php');
+// $request_uri = $_SERVER['REQUEST_URI'];
+// $router = new Router();
+// $router->route($request_uri);
 ?>
 
 <?php
-require_once '../../app/configs/init.php';
+// require_once '../../app/configs/init.php';
 include('./templates/header.php');
 
 

@@ -1,6 +1,7 @@
 <?php
 require_once '../../app/configs/sessions.php';
 startSession();
+
 $code = $first_name = $last_name = $note = $pass = "";
 $errors = array('code' => '', 'first_name' => '', 'last_name' => '', 'note' => '', 'pass' => '');
 if (isset($_POST['submit'])) {

@@ -2,64 +2,58 @@
 require_once '../../app/configs/sessions.php';
 startSession();
 require_once '../../app/configs/init.php';
+require_once "../../app/models/addaccountModel.php";
 
+class FormHandler {
+    private $formData = [];
 
-
-if (isset($_POST['submit'])) {
-
-    if (isset($_POST['first_name'])) {
-        $first_name = $_POST['first_name'];
-    } else {
-        $first_name = "no data";
+    public function __construct() {
+        $this->formData['first_name'] = $this->getPostData('first_name', 'no data');
+        $this->formData['last_name'] = $this->getPostData('last_name', 'no data');
+        $this->formData['code'] = $this->getPostData('code', 'no data');
+        $this->formData['note'] = $this->getPostData('note', '');
+        $this->formData['pass'] = $this->getPostData('pass', 'unspecified');
+        $this->formData['gender'] = $this->getPostData('gender', 'unspecified');
+        $this->formData['major'] = $this->getPostData('major', '');
+        $this->formData['comment'] = $this->getPostData('comment', '');
+        $this->formData['semester'] = $this->getPostData('semester', '');
     }
 
-    if (isset($_POST['last_name'])) {
-        $last_name = $_POST['last_name'];
-    } else {
-        $last_name = "no data";
+    public function getFormData() {
+        return $this->formData;
     }
 
-    if (isset($_POST['code'])) {
-        $code = $_POST['code'];
-    } else {
-        $code = "no data";
+    public function isSubmitted() {
+        return isset($_POST['submit']);
     }
 
-    if (isset($_POST['note'])) {
-        $note = $_POST['note'];
-    } else {
-        $note = "";
+    public function isCancelled() {
+        return isset($_POST['cancel']);
     }
 
-    if (isset($_POST['pass'])) {
-        $pass = $_POST['pass'];
-    } else {
-        $pass = "unspecified";
-    }
-
-    if (isset($_POST['gender'])) {
-        $gender = $_POST['gender'];
-    } else {
-        $gender = "unspecified";
-    }
-
-    if (isset($_POST['major'])) {
-        $major = $_POST['major'];
-    } else {
-        $major = "";
-    }
-
-    if (isset($_POST['major'])) {
-        $comment = $_POST['comment'];
-    } else {
-        $comment = "";
-    }
-
-    if (isset($_POST['semester'])) {
-        $semestres = $_POST['semester'];
+    private function getPostData($key, $default) {
+        return isset($_POST[$key]) ? $_POST[$key] : $default;
     }
 }
 
-if (isset($_POST['cancel'])) {
+
+$formHandler = new FormHandler();
+
+if ($formHandler->isSubmitted()) {
+    $formData = $formHandler->getFormData();
+
+    // Now you have access to $formData['first_name'], $formData['last_name'], etc.
+
+    // Example usage:
+    $studentModel = new EtudiantModel();
+    $studentModel->insertData($formData); // Assuming insertData method exists in your model
+
+    // Redirect to some page after submission
+    header('Location: somepage.php');
+    exit();
+}
+
+if ($formHandler->isCancelled()) {
     header('Location: add.php');
+    exit();
 }

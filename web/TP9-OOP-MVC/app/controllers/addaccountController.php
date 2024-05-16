@@ -1,57 +1,113 @@
 <?php
 require_once '../../app/configs/sessions.php';
-startSession();
 require_once "../../app/models/addaccountModel.php";
 
-$prenom = $nom = $filiere = $codeE = $note = "";
-$errors = array('prenom' => '', 'nom' => '', 'filiere' => '', 'codeE' => '', 'note' => '');
+class FormHandler {
+    private $prenom = '';
+    private $nom = '';
+    private $filiere = '';
+    private $codeE = '';
+    private $note = '';
+    private $errors = [
+        'prenom' => '', 
+        'nom' => '', 
+        'filiere' => '', 
+        'codeE' => '', 
+        'note' => ''
+    ];
+    private $etudiantModel;
 
-if (isset($_POST['submit'])) {
-
-    // check name -1
-    if (empty($_POST['prenom'])) {
-        $errors['prenom'] = "First Name is required!";
-    } else {
-        $prenom = $_POST['prenom'];
+    public function __construct() {
+        startSession();
+        $this->etudiantModel = new EtudiantModel();
     }
 
-    if (empty($_POST['nom'])) {
-        $errors['nom'] = "Last Name is required!";
-    } else {
-        $nom = $_POST['nom'];
+    public function handleFormSubmission() {
+        if (isset($_POST['submit'])) {
+            $this->validateForm();
+
+            if (!array_filter($this->errors)) {
+                $this->insertData();
+                header('location: listStudents.php');
+                exit();
+            }
+        }
     }
 
+    private function validateForm() {
+        $this->prenom = $this->sanitizeInput($_POST['prenom'] ?? '');
+        $this->nom = $this->sanitizeInput($_POST['nom'] ?? '');
+        $this->filiere = $this->sanitizeInput($_POST['filiere'] ?? '');
+        $this->codeE = $this->sanitizeInput($_POST['codeE'] ?? '');
+        $this->note = $this->sanitizeInput($_POST['note'] ?? '');
 
-    if (empty($_POST['filiere'])) {
-        $errors['filiere'] = "Filiere is required!";
-    } else {
-        $filiere = $_POST['filiere'];
+        if (empty($this->prenom)) {
+            $this->errors['prenom'] = "First Name is required!";
+        }
+
+        if (empty($this->nom)) {
+            $this->errors['nom'] = "Last Name is required!";
+        }
+
+        if (empty($this->filiere)) {
+            $this->errors['filiere'] = "Filiere is required!";
+        }
+
+        if (empty($this->codeE)) {
+            $this->errors['codeE'] = "Code is required!";
+        }
+
+        if (empty($this->note)) {
+            $this->errors['note'] = "Note is required!";
+        }
     }
 
-    // check email -2
-    if (empty($_POST['codeE'])) {
-        $errors['codeE'] = "Code is required!";
-    } else {
-        $codeE = $_POST['codeE'];
+    private function sanitizeInput($data) {
+        return htmlspecialchars(trim($data));
     }
 
-    // check phone -3
-    if (empty($_POST['note'])) {
-        $errors['note'] = "Number password is required!";
-    } else {
-        $note = $_POST['note'];
+    private function insertData() {
+        $studentData = [
+            'codeE' => $this->codeE,
+            'nom' => $this->nom,
+            'prenom' => $this->prenom,
+            'filiere' => $this->filiere,
+            'note' => $this->note
+        ];
+        $this->etudiantModel->insertData($studentData);
     }
 
-    // If there are errors, don't redirect, display errors instead
-    if (array_filter($errors)) {
-        // foreach ($errors as $error) {
-        //     if (!empty($error)) {
-        //         echo "<p>Error: $error</p>";
-        //     }
-        // }
-    } else {
-        // No errors, insert data and redirect
-        insertData($E);
-        header('location: listStudents.php');
+    public function getErrors() {
+        return $this->errors;
+    }
+
+    public function getFieldValue($field) {
+        return htmlspecialchars($this->{$field});
     }
 }
+
+$studentModel = new EtudiantModel();
+$conn = $studentModel->connect_db(); // Get the connection
+$student = $studentModel->getE($conn); // Pass the connection as an argument
+$studentModel->deleteE($conn); // Pass the connection as an argument
+
+$conn = null; // Close the connection
+
+$student = new EtudiantModel();
+
+if (isset($_POST['save'])) {
+
+    $prenom = $_POST['prenom'];
+    $nom = $_POST['nom'];
+    $filiere = $_POST['filiere'];
+    $codeE = $_POST['codeE'];
+    $note = $_POST['note'];
+
+    $E = array('prenom' => $prenom, 'nom' => $nom, 'filiere' => $filiere, 'codeE' => $codeE, 'note' => $note);
+
+    $student->editE($E);
+
+
+    header('location: listStudents.php');
+}
+?>

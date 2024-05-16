@@ -3,6 +3,10 @@ require_once '../../app/controllers/addaccountController.php';
 include('./templates/header.php');
 
 
+$formHandler = new FormHandler();
+$formHandler->handleFormSubmission();
+$errors = $formHandler->getErrors();
+?>
 
 ?>
 <section>
@@ -13,19 +17,19 @@ include('./templates/header.php');
 
             <div class="block-1">
                 <label for="">Entre le nom:</label>
-                <input type="text" name="prenom" id="first_name" value="<?php echo $prenom; ?>" />
+                <input type="text" name="prenom" id="first_name" value="<?php echo $formHandler->getFieldValue('prenom'); ?>" />
                 <p class="text-danger"><?php echo $errors['prenom'] ?></p>
 
                 <label for="">Entre le prenome:</label>
-                <input type="text" name="nom" id="last_name"  value="<?php echo $nom; ?>" />
+                <input type="text" name="nom" id="last_name"  value="<?php echo $formHandler->getFieldValue('nom'); ?>" />
                 <p class="text-danger"><?php echo $errors['nom'] ?></p>
 
                 <label for="">Entre le code:</label>
-                <input type="text" name="codeE" id="codeE"  value="<?php echo $codeE; ?>" />
+                <input type="text" name="codeE" id="codeE"  value="<?php echo $formHandler->getFieldValue('codeE'); ?>" />
                 <p class="text-danger"><?php echo $errors['codeE'] ?></p>
 
                 <label for="">Entre le Note:</label>
-                <input type="text" name="note" id="note"  value="<?php echo $note; ?>" />
+                <input type="text" name="note" id="note"  value="<?php echo $formHandler->getFieldValue('note'); ?>" />
                 <p class="text-danger"><?php echo $errors['note'] ?></p>
             </div>
 

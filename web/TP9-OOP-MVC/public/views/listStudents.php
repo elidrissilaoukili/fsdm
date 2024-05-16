@@ -1,6 +1,5 @@
 <?php
 require_once '../../app/controllers/listStudentsController.php';
-require_once '../../app/controllers/listFiliereController.php';
 require_once '../../app/configs/init.php';
 
 include('./templates/header.php');

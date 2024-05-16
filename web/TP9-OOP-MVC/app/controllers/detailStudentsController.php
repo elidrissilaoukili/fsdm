@@ -1,9 +1,12 @@
 <?php
 require_once '../../app/configs/sessions.php';
 startSession();
-require_once '../../app/models/detailStudentsModel.php';
+require_once '../../app/models/addaccountModel.php';
 
 
-$student = getE($conn);
-deleteE($conn);
+$studentModel = new EtudiantModel();
+$conn = $studentModel->connect_db(); // Get the connection
+$student = $studentModel->getE($conn); // Pass the connection as an argument
+$studentModel->deleteE($conn); // Pass the connection as an argument
 
+$conn = null; // Close the connection
