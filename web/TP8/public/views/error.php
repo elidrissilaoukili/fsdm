@@ -10,8 +10,14 @@
 </head>
 
 <body>
-    <h1>Error 404 - Page Not Found</h1>
-    <p>The page you are looking for does not exist.</p>
+
+    <div style="display: flex;justify-content:center; margin:5rem auto" >
+        <div>
+            <h1>Error 404 - Page Not Found</h1>
+            <p>The page you are looking for does not exist.</p>
+        </div>
+    </div>
+
 </body>
 
 </html>
