@@ -1,42 +1,4 @@
-<<<<<<< HEAD
 <?php
-
-function show($stuff)
-{
-    echo "<pre>";
-    print_r($stuff);
-    echo "</pre>";
-=======
-<?php 
-
-function show($stuff)
-{
-	echo "<pre>";
-	print_r($stuff);
-	echo "</pre>";
->>>>>>> debed246c35179de1f191a3660fb5fab231419dc
-}
-
-function esc($str)
-{
-<<<<<<< HEAD
-    return htmlspecialchars($str);
-=======
-	return htmlspecialchars($str);
->>>>>>> debed246c35179de1f191a3660fb5fab231419dc
-}
-
-
-function redirect($path)
-{
-<<<<<<< HEAD
-    header("Location: " . ROOT . "/" . $path);
-    die;
-=======
-	header("Location: " . ROOT."/".$path);
-	die;
->>>>>>> debed246c35179de1f191a3660fb5fab231419dc
-}
 
 
 function displayDate($lang)
@@ -126,8 +88,4 @@ function displayDate($lang)
     $year = $date["year"];
 
     return $days[$lang][$dayw] . "($daym) / " . $months[$lang][$month] . " / " . $year;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> debed246c35179de1f191a3660fb5fab231419dc
