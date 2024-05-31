@@ -1,0 +1,168 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap");
+
+/*
+    Styling for Header and Footer 
+    and some common elements
+*/
+
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 0.5rem;
+    font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-weight: weight;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    max-width: 1000px;
+    margin: auto;
+    padding: 2rem 0;
+}
+
+.header-txt {
+    line-height: 6px;
+    margin-left: 9rem;
+}
+
+.big-line {
+    background-color: rgb(160, 14, 14);
+    padding: 0.3rem 0.5rem;
+    text-align: right;
+    color: white;
+}
+
+header img {
+    width: 100px;
+    position: absolute;
+    margin-left: 1.5rem;
+}
+
+.header-main {
+    display: flex;
+}
+
+section {
+    max-width: 1000px;
+    margin: auto;
+}
+
+footer {
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.footer {
+    margin-top: 2rem;
+    line-height: 5px;
+    text-align: center;
+    color: rgb(160, 14, 14);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+}
+
+
+/**/
+
+input[type='text'],
+select {
+    width: 350px;
+    padding: 0.3rem;
+}
+
+.break-to-two {
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgb(240, 240, 240);
+    height: fit-content;
+    padding: 1rem 0;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.side {
+    background-color: brown;
+    padding: 1rem;
+    height: fit-content;
+}
+
+.main-content {
+    background-color: rgb(240, 240, 240);
+    padding: 1rem;
+    height: fit-content;
+}
+
+.footer p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    font-size: 18px;
+    padding: 0.5rem auto;
+    margin: 0.5rem;
+    font-weight: bold;
+}
+
+.side a {
+    text-decoration: none;
+    color: rgb(214, 214, 214);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+table,
+tr,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 0.5rem;
+    font-size: 1rem;
+    overflow-x: auto;
+}
+
+#table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td,
+#table th {
+    border: 1px solid #a7a7a7;
+    padding: 8px;
+}
+
+#table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#table tr:hover {
+    background-color: #ddd;
+}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: brown;
+    color: white;
+}

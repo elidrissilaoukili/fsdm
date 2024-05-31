@@ -1,0 +1,75 @@
+body{
+    width: 80%;
+    margin: 0 auto;
+    color: #010163;
+}
+#SMI6{
+    position: relative;
+    top: 20px;
+    left: 120px;
+    color: green;
+}
+#SMI6 p{
+    position: relative;
+    top: -20px;
+}
+img{
+    width: 70px;
+    position: absolute;
+    left: 20px;
+    top: 40px;
+}
+
+#tab{
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+table,th,tr,td{
+    border: 1px solid darkred;
+}
+td{
+    padding: 20px 30px;
+}
+#Line1{
+    width: 100%;
+    height: 20px;
+    background-color: darkred;
+    top: 85px;
+}
+#Line1 p{
+    position: relative;
+    top: -15px;
+    left: -10px;
+    float: right;
+    color: white;
+    font-weight: bold;
+}
+header{
+    position: relative;
+}
+.Line2{
+    width: 100%;
+    height: 2px;
+    background-color: darkred;
+}
+
+.info p {
+    text-align: center;
+    color: darkred;
+}
+.buttons{
+    margin: 10px 0;
+}
+.filiere{
+    margin: 10px 0;
+}
+label{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 13px;
+}
+footer span{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

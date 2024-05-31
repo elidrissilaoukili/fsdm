@@ -3,7 +3,6 @@
 // require_once('controllers/controller.php');
 // require_once('controllers/students.php');
 
-
 $request = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $baseDir = 'clonedRepos/fsdm/web/mvc-coll-me';
 
