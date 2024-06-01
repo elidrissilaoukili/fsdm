@@ -1,7 +1,22 @@
-<?php include 'templates/header.php'; ?>
+<?php
+session_start();
+
+if (!isset($_SESSION['id']) || !isset($_SESSION['username'])) {
+    header("Location: ./login.php");
+    exit;
+}
+
+include 'templates/header.php'; 
+?>
+
 
 <html>
 <body>
+
+    <div class="welcome">
+        <h1>welcome <?= htmlspecialchars($_SESSION['username']);?></h1>
+    </div>
+
     <section class="container">
         <div class="break-to-two">
             <div class="side">

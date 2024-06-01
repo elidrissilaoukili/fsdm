@@ -24,6 +24,15 @@ header {
     padding: 2rem 0;
 }
 
+.welcome {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: auto;
+}
+
 .header-txt {
     line-height: 6px;
     margin-left: 9rem;
@@ -75,9 +84,11 @@ footer {
 /**/
 
 input[type='text'],
+input[type='password'],
 select {
     width: 350px;
     padding: 0.3rem;
+    margin: 0.2rem;
 }
 
 .break-to-two {

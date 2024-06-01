@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2024 at 09:58 AM
+-- Generation Time: Jun 01, 2024 at 12:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,10 +41,11 @@ CREATE TABLE `etudiant` (
 --
 
 INSERT INTO `etudiant` (`id`, `code`, `prenom`, `nom`, `note`, `filiere`) VALUES
-(4, '35236', 'mohammed', 'elidrissi laoukili', 17.00, 'SMI'),
-(34, '22222', 'khadija', 'good', 17.00, 'SMP'),
 (49, '66666', 'hiya', 'zwina', 14.00, 'SMI'),
-(53, '55595', 'mohammed', 'nada', 20.00, 'SMI');
+(53, '55595', 'mohammed', 'nada', 20.00, 'SMI'),
+(58, '55555', 'doda', 'doda', 8.00, 'SVT'),
+(59, '35236', 'mohammed', 'elidrissi laoukili', 17.00, 'SMI'),
+(60, '35223', 'nada', 'essafri', 20.00, 'SMI');
 
 -- --------------------------------------------------------
 
@@ -63,11 +64,8 @@ CREATE TABLE `filiere` (
 --
 
 INSERT INTO `filiere` (`id`, `codeF`, `intituleF`) VALUES
-(1, 'SMI', 'Sciences Mathématiques et Informatique'),
 (2, 'SMP', 'Sciences de la Matière Physique'),
-(3, 'SMC', 'Sciences de la Matière Chimie'),
-(4, 'SMA', 'Sciences Mathématiques et Applications'),
-(5, 'SVT', 'Science de la vie de terre');
+(4, 'SMA', 'Sciences Mathématiques et Applications');
 
 -- --------------------------------------------------------
 
@@ -87,7 +85,6 @@ CREATE TABLE `professeurs` (
 --
 
 INSERT INTO `professeurs` (`id`, `prenom`, `nom`, `departement`) VALUES
-(1, 'Mohammed', 'Elidrissi', 'SMI'),
 (4, 'mohammed', 'laoukili', 'SMI');
 
 -- --------------------------------------------------------
@@ -107,8 +104,35 @@ CREATE TABLE `salles` (
 --
 
 INSERT INTO `salles` (`id`, `nom`, `capacite`) VALUES
-(5, 'Amphi k', '90'),
-(7, '[Amphi G]', '[60]');
+(5, 'Amphi k', '190'),
+(7, '[Amphi G]', '[60]'),
+(13, 'L8', '155'),
+(14, 'L7', '100');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'admin', '$2y$10$.pGYvbWTW9YUQyqIAXIVFOLKsGSahmbaERx9kekw3N.ClCZ7D15.2'),
+(2, 'admin1', '$2y$10$kjDThqy52oUnJDy0SuBYxeOf6Pe56kVI.qo4Jmd98zHvZ14/cdiVe'),
+(3, 'admin2', '$2y$10$6c9e2aTOBydFH3jhFUGHh.vBA0RPrH8u.gYY2jplHiIqy5D3Leusi'),
+(4, 'nada', '$2y$10$joK.9zzHw20sH47UGnm00u2ijSrWzd2AGWg7JeqUcSqVZpJC562TC'),
+(6, 'elidrissi', '$2y$10$iR.UnsnPvPiPhz5l3BWq3OAqL6X7XUu0WbEhuj9Gq4v1cQojHHHqC'),
+(7, 'elidrissi laoukili', '$2y$10$eOP2nkl2rIzqDWX3qBn71uepVeeAIb3dcervysvUZEH8AujKBv3AK'),
+(9, 'admin3', '$2y$10$ipNiUejvm0F4vHn6kmlclOhwfmuA1mskdTPgC91t77uYpUxczHlJG');
 
 --
 -- Indexes for dumped tables
@@ -140,6 +164,14 @@ ALTER TABLE `salles`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `username_2` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -147,7 +179,7 @@ ALTER TABLE `salles`
 -- AUTO_INCREMENT for table `etudiant`
 --
 ALTER TABLE `etudiant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `filiere`
@@ -165,7 +197,13 @@ ALTER TABLE `professeurs`
 -- AUTO_INCREMENT for table `salles`
 --
 ALTER TABLE `salles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
