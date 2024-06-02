@@ -18,7 +18,7 @@ DECLARE
 
 BEGIN
     FOR budget_record IN budget_cursor LOOP
-        INSERT INTO 
+        INSERT d 
             COURSES(NUM_OPERATION, NOM_OPERATION, CATEGORIE, DATE_OPERATION, MONTANT)
         VALUES
             (budget_record.NUM_OPERATION, budget_record.NOM_OPERATION, budget_record.CATEGORIE, budget_record.DATE_OPERATION, budget_record.MONTANT);

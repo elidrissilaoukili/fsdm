@@ -3,36 +3,36 @@ require './models/model.php';
 
 function indexAction($module)
 {
-	render('./views/vindex.php');	
+    render('./views/vindex.php');
 }
 
 function listAction($module)
 {
-	$view = './views/vlist.php';
-	$data = [
-		"module" => $module,
-		"list" => findAll($module)
-	];
+    $view = './views/vlist.php';
+    $data = [
+        "module" => $module,
+        "list" => findAll($module)
+    ];
 
-	render($view, $data);
+    render($view, $data);
 }
 
 function detailAction($module)
 {
-	$view = './views/vdetail.php';
-	$data = [
-		"module" => $module,
-		"element" => findOne($module, $_GET["id"]),
-	];
+    $view = './views/vdetail.php';
+    $data = [
+        "module" => $module,
+        "element" => findOne($module, $_GET["id"]),
+    ];
 
-	render($view, $data);
+    render($view, $data);
 }
 
 function deleteAction($module)
 {
-	delete($module, $_GET['id']);
-	header("Location: index.php?module=" . $module . "&action=list");
-	exit;
+    delete($module, $_GET['id']);
+    header("Location: index.php?module=" . $module . "&action=list");
+    exit;
 }
 
 function editAction($module)
@@ -73,22 +73,29 @@ function editAction($module)
 
 function render($view, $data = [])
 {
-	if(file_exists($view)) 
-	{
-		extract($data);
-		
-		ob_start();
-		require($view);
-		$view = ob_get_clean();
+    if (file_exists($view)) {
+        extract($data);
 
-		ob_start();
+        ob_start();
+        require($view);
+        $view = ob_get_clean();
+
+        ob_start();
         require("./views/template.php");
         $output = ob_get_clean();
 
         exit($output);
-	} else {
-		throw new Exception("404 Page not found", 1);
-	}
+    } else {
+        throw new Exception("404 Page not found", 1);
+    }
 }
 
 
+function logoutAction()
+{
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    header("Location: login.php");
+    exit;
+}
