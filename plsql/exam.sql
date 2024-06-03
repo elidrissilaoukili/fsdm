@@ -31,6 +31,17 @@ EXCEPTION
 END;
 /
 
+-- Drop the History table if it exists
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE History CASCADE CONSTRAINTS';
+EXCEPTION
+    WHEN OTHERS THEN
+        IF SQLCODE != -942 THEN
+            RAISE;
+        END IF;
+END;
+/
+
 -- Create the PILOTE table
 CREATE TABLE PILOTE (
     PlNum NUMBER PRIMARY KEY,
@@ -57,6 +68,12 @@ CREATE TABLE customers (
     AGE NUMBER,
     ADDRESS VARCHAR2(100),
     SALARY NUMBER(10, 2)
+);
+
+CREATE TABLE History (
+    PlNum NUMBER,
+    operation_date DATE,
+    operation_type VARCHAR2(10)
 );
 
 -- Insert data into the PILOTE table
