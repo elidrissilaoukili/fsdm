@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-require 'models/model.php';
+require 'controllers/Controller.php';
 
 login();
 
@@ -19,10 +19,10 @@ include 'views/templates/header.php';
         <h2>Login page</h2>
         <form action="login.php" method="post">
             <label for="username">Username:</label>
-            <input type="text" name="username" id="username" required>
+            <input type="text" name="username" id="username">
             <br>
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" required>
+            <input type="text" name="password" id="password">
             <br>
             <input type="submit" value="Login">
             <a href="./register.php">Register</a>
@@ -31,4 +31,4 @@ include 'views/templates/header.php';
 </body>
 
 </html>
-<?php include 'views/templates/footer.php'; ?>
+<?php include 'views/templates/footer.php'; ?>  

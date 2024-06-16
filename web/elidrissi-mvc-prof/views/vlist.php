@@ -1,7 +1,5 @@
-
 <h1>List of <?= $module; ?></h1>
 <div>
-
 	<?php if (count($list) > 0): ?>
 		<?php  $keys = array_keys($list[0]); ?>	
         <table>
