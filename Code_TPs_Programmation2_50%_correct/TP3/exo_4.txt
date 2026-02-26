@@ -1,0 +1,58 @@
+#include <stdio.h>
+# include <stdlib.h>
+///////////////////////////////////////////////
+int ValeureSuivante(int n)
+{
+	int i = n;
+	if (i % 2 == 0) i = i/2;
+	else i = 3 * i + 1;
+	return (i);
+}
+///////////////////////////////////////////////
+int * Hailstone_Number(int n)
+{
+	int HN = n; 
+	if (HN == 1) printf("%d ", HN);
+	else
+	{
+		printf(" %d ", HN);
+		Hailstone_Number(ValeureSuivante(HN));
+	}
+	return 0;
+}
+///////////////////////////////////////////////
+int Compte_Etapes(int n)
+{
+	int HN = n;
+	if(HN == 1)	return 1;
+	else return 1+Compte_Etapes(ValeureSuivante(HN));
+	
+}
+///////////////////////////////////////////////
+int * allouer (int n) {
+	int *T;
+	int N;
+	N=Compte_Etapes(n);
+	T=(int*)malloc(N*sizeof(int));
+	return T; 
+	}
+///////////////////////////////////////////////
+
+void affiche(int* T, int n) {
+	int i; int N;
+	N=Compte_Etapes(n)-1;
+	printf("\n ********* La sequence de Hailstone de %d est : \n", n);
+	T=Hailstone_Number(ValeureSuivante(n));
+	printf("\n ********* Le nombre des etapes requises est : %d \n",N);
+}
+///////////////////////////////////////////////
+
+main( )
+{
+	int n;
+	int * T;
+	printf(" \n Entrer un entier positif : ");
+	scanf("%i", &n);
+	T=allouer(n);
+	affiche(T,n);
+}

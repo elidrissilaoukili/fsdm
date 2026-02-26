@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+/* ---------------Exercice3-Question1---------------------*/
+int ** alloue_matrice_pascal(int **Tab,int n){
+	int i;
+	Tab=(int**)malloc(n*sizeof(int *));
+	for(i=0;i<n;i++){
+		Tab[i]=(int *)malloc((i+1)*sizeof(int)); 
+	}
+	return Tab; 
+}
+/* ---------------Exercice3-Question2---------------------*/
+int ** remplit_matrice_pascal (int **Tab,int n){
+	int i,j;
+	for(i=0;i<n;i++) {
+		for(j=0;j<=i;j++) {
+			if(i==j||j==0){
+				*(*(Tab+i)+j)=1; }
+			else {
+				*(*(Tab+i)+j)=*(*(Tab+i-1)+(j-1))+*(*(Tab+i-1)+j); } 
+		}
+	}
+	return Tab; 
+}
+
+/* ---------------Exercice3-Question3---------------------*/
+void affiche_matrice_pascal(int **Tab,int n){
+	int i,j;
+	for(i=0;i<n;i++){
+		for(j=0;j<=i;j++){
+		printf("%d ",*(*(Tab+i)+j)); 
+		}
+	printf("\n"); 
+	} 
+}
+
+
+/* ---------------Exercice3-Question4---------------------*/
+int main(){
+	int i,j,n;
+	int **Tab;
+	printf("Entrer une valeur : ");
+	scanf("%d",&n);
+	Tab=alloue_matrice_pascal (Tab,n);
+	Tab=remplit_matrice_pascal (Tab,n);
+	affiche_matrice_pascal(Tab,n);
+	return 0 ;
+}

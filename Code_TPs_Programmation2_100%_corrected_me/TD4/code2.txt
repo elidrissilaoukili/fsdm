@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+Employee *get_employee(Employee *list, int length);
+void display_employee(Employee *list, int N);
+float average_salary(Employee *e, int length);
+void list_employee(Employee *list, int length);
+void find_employee_name(Employee *list, int length);
+
+typedef struct employee
+{
+     char firstName[15];
+     char lastName[15];
+     char departement[15];
+     double hours;
+     double basic;
+} Employee;
+
+int main()
+{
+     int length;
+     Employee *list;
+     printf("\nEnter how many employee: ");
+     scanf("%d", &length);
+     list = get_employee(list, length);
+     display_employee(list, length);
+     printf("\t\n************* List Employees Salary *************\n");
+     list_employee(list, length);
+     find_employee_name(list, length);
+}
+
+Employee *get_employee(Employee *list, int length)
+{
+     int i;
+     list = (Employee *)malloc(sizeof(Employee));
+     if (list == NULL)
+          printf("Allocation failed!\n");
+     else
+     {
+          for (i = 0; i < length; i++)
+          {
+               printf("\n\t**************** For Employee %d ****************\n", i + 1);
+               printf("Enter employee %d Last Name: ", i + 1);
+               scanf("%s", &(list + i)->lastName);
+               printf("Enter employee %d First Name: ", i + 1);
+               scanf("%s", &(list + i)->firstName);
+               printf("Enter employee %d Departement: ", i + 1);
+               scanf("%s", &(list + i)->departement);
+               printf("Enter employee %d Hours: ", i + 1);
+               scanf("%lf", &(list + i)->hours);
+               printf("Enter employee %d Basic Salary: ", i + 1);
+               scanf("%lf", &(list + i)->basic);
+          }
+     }
+     return list;
+}
+void display_employee(Employee *list, int N)
+{
+     int i;
+     for (i = 0; i < N; i++)
+     {
+          printf("\n\n\t**************** For Employee %d ****************\n", i + 1);
+          printf("\tLast Name: %s\n", (list + i)->firstName);
+          printf("\tFirst Name: %s\n", (list + i)->lastName);
+          printf("\tdepartement: %s\n", (list + i)->departement);
+          printf("\tSalaire: %2f\n", ((list + i)->hours) * ((list + i)->basic));
+     }
+}
+
+float average_salary(Employee *e, int length)
+{
+     int i;
+     float sum = 0;
+     for (i = 0; i < length; i++)
+          sum += (e[i].hours) * (e[i].basic);
+     return sum / length;
+}
+
+void list_employee(Employee *list, int length)
+{
+     int i;
+     for (i = 0; i < length; i++)
+     {
+          if ((list[i].hours) * (list[i].basic) > average_salary((list + i), length))
+               printf("%s %s\n", list[i].firstName, list[i].lastName);
+     }
+}
+
+void find_employee_name(Employee *list, int length)
+{
+     int i, OK = 0;
+     char Nom[10];
+     printf("Enter the name to search on: ");
+     scanf("%s", Nom);
+     for (i = 0; i < length; i++)
+     {
+          if (strcmp(list[i].lastName, Nom) == 0)
+          {
+               printf("%s %s\n", list[i].lastName, list[i].lastName);
+               OK = 1;
+          }
+     }
+     if (!OK)
+          printf("Employee not found\n");
+}

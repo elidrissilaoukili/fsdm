@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void get_binary(int decimal_x);
+
+int main()
+{
+     int number;
+     printf("\nEnter number to convert into binary: ");
+     printf("\nNumber = ");
+     scanf("%d", &number);
+     get_binary(number);
+
+     return 0;
+}
+
+void get_binary(int decimal_x)
+{
+     int i = 0, length = 1, *array;
+     array = (int *)malloc(length * sizeof(int));
+     if (decimal_x != 0)
+     {
+          array[i] = decimal_x % 2;
+          decimal_x = decimal_x / 2;
+          get_binary(decimal_x);
+          printf("%d", *(array + i));
+          length++;
+          i++;
+     }
+}

@@ -1,0 +1,33 @@
+# include <stdio.h>
+# include<stdlib.h>
+////////////////////////////////////////////////////
+int Premier(int n, int i){
+	if(i==1) return 1;
+	else if (n % i==0) return 0;
+	else Premier(n,i-1);
+}
+///////////////////////////////////////////////////////////////////
+void allouer (int n) {
+	int *T;
+	int N=1;
+	int i,j=0;
+	T=(int*)malloc(N*sizeof(int));
+	for(i=2;i<=n;i++){
+		if(Premier(i,i/2)==1){
+			N++;
+			T=(int*)realloc(T,N*sizeof(int));
+			*(T+j)=i;
+			printf("%d\t",*(T+j));
+			j++;
+		}
+		else *(T+j)=-1;
+	} 
+}
+//////////////////////////////////////////////////////////////////
+int main(){
+	int n;
+	printf(" \n Entrer une valeur : ");
+	scanf("%d",&n);
+	allouer(n);
+	return 0 ;
+}

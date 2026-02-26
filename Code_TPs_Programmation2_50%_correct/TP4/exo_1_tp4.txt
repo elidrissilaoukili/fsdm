@@ -1,0 +1,147 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+
+///////////////////////Question1///////////////////////////////
+typedef struct point{
+	float x;
+	float y;
+	}Point;
+	
+Point A, B;
+
+void get2Points()
+	{
+	printf("\n Entrer les coordonnees du premier point : \n");
+	scanf("%f %f", &A.x, &A.y);
+	printf("\n Entrer les coordonnees du deuxieme point: \n");
+	scanf("%f %f", &B.x, &B.y);
+	}
+///////////////////////Question2///////////////////////////////
+double DistancePoint(Point A, Point B){
+	float d = sqrt(fabs((B.x-A.x)*(B.x-A.x)) + fabs((B.y-A.y)*(B.y-A.y))); 
+	return d;
+	}
+
+
+//////////////////////Question 3////////////////////////
+typedef struct cercle{
+	Point Origine;
+	float Rayon;
+}Cercle;
+
+Cercle C;
+
+Cercle getCercle()
+{
+	printf("\n Entrer les coordonnees du point Origine:\n");
+	scanf("%f %f", &C.Origine.x, &C.Origine.y);
+	printf("\n Entrer le Rayon:\n");
+	scanf("%f", &C.Rayon);
+	return C;
+}
+
+///////////////////////Question4///////////////////////////////
+float AireCercle(Cercle C){
+	float Pi=3.14;
+	float aire = Pi*C.Rayon*C.Rayon; 
+	printf("\n ******************** %f",aire);
+	return aire;
+	}
+
+////////////////Question5///////////////////////////
+typedef struct triangle{
+	Point A;
+	Point B;
+	Point C;
+	}Triangle;
+
+Triangle tri;
+
+Triangle getTriangle()
+	{
+	printf("Entrez les coordonnees du point A:\n");
+	scanf("%f%f",&tri.A.x,&tri.A.y);
+	printf("Entrez les coordonnees du point B:\n");
+	scanf("%f%f",&tri.B.x,&tri.B.y);
+	printf("Entrez les coordonnees du point C:\n");
+	scanf("%f%f",&tri.C.x,&tri.C.y);
+	}
+
+//////////////////////Question6///////////////////////////////
+float AireTriangle(Triangle tri){
+	float partie_1 = ((tri.B.x)-(tri.A.x))*((tri.C.y)-(tri.A.y));
+	float partie_2 = ((tri.C.x)-(tri.A.x))*((tri.B.y)-(tri.A.y));
+	float aire = (fabs(partie_1-partie_2))/2;
+	return aire; 
+	}
+	
+/////////////////////Question7///////////////////////////////
+typedef struct {
+	Point topLeft;
+	Point botRight;
+	} Rectangle;
+
+Rectangle r;
+
+Rectangle getRect()
+	{
+	printf(" \n Enter top left point:\n");
+	scanf("%f %f", &r.topLeft.x, &r.topLeft.y);
+	printf("Enter bottom right point:\n");
+	scanf("%f %f", &r.botRight.x, &r.botRight.y);
+	return r;
+	}
+
+///////////////////////Question8///////////////////////////////
+float findArea(Rectangle r)
+{
+	return fabs((r.botRight.x - r.topLeft.x) * (r.topLeft.y - r.botRight.y));
+}
+
+int main()
+{	
+	int choice;
+	printf("\n\n");
+	printf("1 ------------> Formes Geometrique : Point \n");
+	printf("2 ------------> Formes Geometrique : Cercle\n");
+	printf("3 ------------> Formes Geometrique : Triangle\n");
+	printf("4 ------------> Formes Geometrique : Rectangle\n");
+	printf("5 ------------> Formes Geometrique : EXIT \n");
+	do {
+	printf("\nEntrer le choix: \n");
+	scanf("%d", &choice);
+	switch (choice) {
+	case 1:
+		printf("1 ------------> Formes Geometrique : Point \n");
+		get2Points();
+		printf("\n La distance entre A et B est : %2f\n", DistancePoint(A,B));
+		break;
+	
+	case 2:
+		printf("2 ------------> Formes Geometrique : Cercle\n");
+		getCercle();
+		printf("\n L aire de cercle C est : %2f\n", AireCercle(C));
+		break;
+		
+	case 3:
+		printf("3 ------------> Formes Geometrique : Triangle\n");
+		getTriangle();
+		printf("\n L aire de triangle est : %2f\n", AireTriangle(tri));
+		break;
+		printf("5 ------------> Formes Geometrique : EXIT \n");
+		
+	case 4:
+		printf("4 ------------> Formes Geometrique : Rectangle\n");
+		getRect();
+		printf("\n L aire de Rectangle est : %2f\n", findArea(r));
+		break;
+		
+	default:
+		break;
+		}
+	} while (choice < 5);
+	
+	return 0;
+}

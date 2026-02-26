@@ -1,0 +1,204 @@
+#include <stdio.h>
+#include <stdlib.h>
+/* Functions that in use */
+int *allocate(int size);
+void get_elements(int *array, int size);
+void display(int *array, int size);
+int *reallocate(int *array, int size);
+void get_elements_secondary(int *array, int size, int newSize);
+int *insert_values(int *array, int size, int data, int pos);
+void bubble_sort(int *array, int size);
+void remove_dublications(int *array, int size);
+void compare_arrays_elements(int *array1, int size1, int *array2, int size2);
+int main()
+{
+     int *array, size, newSize, length, data, pos;
+     printf("Enter size of the array: ");
+     scanf("%d", &size);
+     array = allocate(size);
+     get_elements(array, size);
+     display(array, size);
+     printf("\nEnter size of N new elements: ");
+     scanf("%d", &newSize);
+     length = size + newSize;
+     array = reallocate(array, length);
+     printf("\nGet secondary elements:_________________________");
+     if (size < length)
+          get_elements_secondary(array, size, length);
+     else
+          printf("We don't have any update for the old array!\n");
+     printf("\nAfter adding elements:_________________________");
+     display(array, length);
+     printf("\nValue: ");
+     scanf("%d", &data);
+     printf("\nEnter one of the following position to insert value (%d) at it: \n", data);
+     printf("{");
+     for (int i = 0; i < length; i++)
+          printf("%d, ", i);
+     printf("}:\n");
+     printf("Position = ");
+     scanf("%d", &pos);
+     printf("\nAfter inserting the given value:_________________________ ");
+     length = length + 1;
+     array = insert_values(array, length, data, pos);
+     display(array, length);
+     printf("\nAfter sorting the elements:_________________________ ");
+     bubble_sort(array, length);
+     display(array, length);
+     printf("\nDATA after removing dublications:_________________________ ");
+     remove_dublications(array, length);
+     int *array1, size1, *array2, size2;
+     printf("\n_________________________PART of ARRAY1_________________________\n");
+     printf("\nSize of array 1 = ");
+     scanf("%d", &size1);
+     array1 = allocate(size1);
+     get_elements(array1, size1);
+     printf("\nSize of array 2 = ");
+     scanf("%d", &size2);
+     array2 = allocate(size2);
+     get_elements(array2, size2);
+     printf("\nElements of array 1:_________________________");
+     display(array1, size1);
+     printf("\nElements of array 2:_________________________");
+     display(array2, size2);
+     compare_arrays_elements(array1, size1, array2, size2);
+     printf("\n");
+     return 0;
+}
+int *allocate(int size)
+{
+     int *array;
+     array = (int *)malloc(size * sizeof(int));
+     return array;
+}
+void get_elements(int *array, int size)
+{
+     printf("\n\t*********** Get Data ***********\n");
+     for (int i = 0; i < size; i++)
+     {
+          printf("Enter data at %d: ", i);
+          scanf("%d", array + i);
+     }
+}
+void display(int *array, int size)
+{
+     printf("\n\t*********** Data That exist in the Array ***********\n");
+     for (int i = 0; i < size; i++)
+          printf("At Index %d | %d\n", i, *(array + i));
+}
+int *reallocate(int *array, int size)
+{
+     array = (int *)realloc(array, size * sizeof(int));
+     return array;
+}
+void get_elements_secondary(int *array, int size, int newSize)
+{
+     printf("\n\t*********** Get Data ***********\n");
+     for (int i = size; i < newSize; i++)
+     {
+          printf("Enter data at %d: ", i);
+          scanf("%d", array + i);
+     }
+}
+int *insert_values(int *array, int size, int data, int pos)
+{
+     int *array2, i;
+     for (i = 0; i < size; i++)
+     {
+          if (i == pos)
+               *(array2 + i) = data;
+          if (i < pos)
+               *(array2 + i) = *(array + i);
+          if (i > pos)
+               *(array2 + i) = *(array + i - 1);
+     }
+     return array2;
+}
+void bubble_sort(int *array, int size)
+{
+     int i, flag, temp;
+     do
+     {
+          flag = 1;
+          for (i = 1; i < size; i++)
+          {
+               if (*(array + i) < *(array + i - 1))
+               {
+                    temp = *(array + i);
+                    *(array + i) = *(array + i - 1);
+                    *(array + i - 1) = temp;
+                    flag = 0;
+               }
+          }
+     } while (flag == 0);
+}
+void remove_dublications(int *array, int size)
+{
+     int i, j, k;
+     for (i = 0; i < size - 1; i++)
+     {
+          for (j = i + 1; j < size;)
+          {
+               if (*(array + i) == *(array + j))
+               {
+                    for (k = j; k < size; k++)
+                    {
+                         if (k < j)
+                              *(array + k) = *(array + k);
+                         if (k >= j)
+                              *(array + k) = *(array + k + 1);
+                    }
+                    size--;
+               }
+               else
+                    j++;
+          }
+     }
+     display(array, size);
+}
+void intersection_elements(int *array1, int size1, int *array2, int size2);
+void union_elements(int *array1, int size1, int *array2, int size2);
+int *merge(int *array1, int *array2, int size1, int size2);
+void compare_arrays_elements(int *array1, int size1, int *array2, int size2)
+{
+     printf("\nAfter comparing:____INTERSECTIONS_________________\n");
+     intersection_elements(array1, size1, array2, size2);
+     printf("\n\nAfter comparing:____UNIONS_________________");
+     union_elements(array1, size1, array2, size2);
+}
+void intersection_elements(int *array1, int size1, int *array2, int size2)
+{
+     for (int i = 0; i < size1; i++)
+     {
+          for (int j = 0; j < size2; j++)
+          {
+               if ((*(array1 + i)) == (*(array2 + j)))
+                    printf("%d\t", *(array1 + i));
+          }
+     }
+}
+int *merge(int *array1, int *array2, int size1, int size2)
+{
+     int *array, size, i, j = 0;
+     size = size1 + size2;
+     array = allocate(size);
+     for (i = 0; i < size1; i++)
+     {
+          *(array + j) = *(array1 + i);
+          j++;
+     }
+     for (i = 0; i < size2; i++)
+     {
+          *(array + j) = *(array2 + i);
+          j++;
+     }
+     return array;
+}
+void union_elements(int *array1, int size1, int *array2, int size2)
+{
+     int *array, size;
+     size = size1 + size2;
+     array = allocate(size);
+     array = merge(array1, array2, size1, size2);
+     remove_dublications(array, size);
+}

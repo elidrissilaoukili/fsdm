@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include <stdlib.h>
+/* Functions in use */
+int **allocate(int rows);
+int **get_values(int **pascal, int rows);
+void display(int **pascal, int rows);
+
+int main()
+{
+     int **pascal, rows;
+     printf("Rows = ");
+     scanf("%d", &rows);
+     pascal = allocate(rows);
+     get_values(pascal, rows);
+     display(pascal, rows);
+
+     return 0;
+}
+
+int **allocate(int rows)
+{
+     int **pascal, i;
+     pascal = (int **)malloc(rows * sizeof(int *));
+     for (i = 0; i < rows; i++)
+          pascal[i] = (int *)malloc(rows * sizeof(int));
+     return pascal;
+}
+
+int **get_values(int **pascal, int rows)
+{
+     int i, j;
+     for (i = 0; i < rows; i++)
+     {
+          for (j = 0; j <= i; j++)
+               if (i == j || j == 0)
+                    *(*(pascal + i) + j) = 1;
+               else
+                    *(*(pascal + i) + j) = *(*(pascal + i - 1) + (j - 1)) + *(*(pascal + i - 1) + j);
+     }
+     return pascal;
+}
+
+void display(int **pascal, int rows)
+{
+     int i, j;
+     printf("Displaying:________________\n");
+     for (i = 0; i < rows; i++)
+     {
+          for (j = 0; j <= i; j++)
+               printf("%d  ", *(*(pascal + i) + j));
+          printf("\n");
+     }
+}

@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *allocate(int *prime, int length);
+int primef(int i, int iByTwo); // iByTwo = i / 2
+void find_primes(int number);
+
+int main()
+{
+     int number;
+     printf("NUmber = ");
+     scanf("%d", &number);
+     find_primes(number);
+     return 0;
+}
+
+int *allocate(int *prime, int length)
+{
+     prime = (int *)malloc(length * sizeof(int));
+     return prime;
+}
+
+int primef(int i, int iByTwo)
+{
+     if (iByTwo == 1)
+          return 1;
+     if (i % iByTwo == 0)
+          return 0;
+     else
+          return primef(i, iByTwo - 1);
+}
+
+void find_primes(int number)
+{
+     int *prime, length, i, j;
+     prime = allocate(prime, length);
+     for (i = 2; i <= number; i++)
+     {
+          if (primef(i, i / 2) == 1)
+          {
+               prime[j] = i;
+               length++;
+               printf("%d\t", *(prime + j));
+               length++;
+               j++;
+          }
+     }
+}

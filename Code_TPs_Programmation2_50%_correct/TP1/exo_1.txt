@@ -1,0 +1,178 @@
+#include<stdio.h>
+#include<stdlib.h>
+/* ---------------Exercice1-Question1---------------------*/
+int* Allouer(int taille) {
+	int* T;
+	T=(int*)malloc(taille*sizeof(int));
+	return T; 
+	}
+
+/* ---------------Exercice1-Question2---------------------*/
+void saisie(int* T, int taille) {
+	int i;
+	for(i=0;i<taille;i++) {
+		printf("Entrer l element du tableau numero %d :\t",i);
+		scanf("%d",T+i); 
+		} 
+	}
+/* ---------------Exercice1-Question3---------------------*/
+void affiche(int* T, int taille) {
+	int i;
+	printf("les elements du tableau sont:\n");
+	for(i=0;i<taille;i++){
+		printf("%d\t",*(T+i)); } 
+	}
+/* ---------------Exercice1-Question4---------------------*/
+int * Reallouer(int* T, int taille) {
+	T=(int *)realloc(T,taille*sizeof(int));
+	return T; 
+	}
+	
+/* ---------------Exercice1-Question5---------------------*/
+void insereValeurs(int * T, int *taille, int ind, int N) {
+	int i,j;
+	if((ind>*taille)||(ind<0)) printf("Insertion impossible!!!! \n\n");
+	else {
+		for(j=0;j<=N;j++) {
+			if (j%2!=0) {
+				(*taille)++;
+				T=Reallouer(T,(*taille));
+				for(i=(*taille)-1;i>=(ind-1);i--) {
+					*(T+(i+1))= *(T+i);
+				}
+				*(T+ind)=j;
+				ind=ind+1;
+				}		
+			}
+		} 
+	}
+	
+/* ---------------Exercice1-Question6---------------------*/
+void tribulle(int * T, int N) {
+	int trie, i, tmp;
+	do{
+		trie = 1;
+		for(i=1;i<N;i++){
+			if( *(T+i-1) > *(T+i)){
+				tmp = *(T+i);
+				*(T+i) = *(T+i-1);
+				*(T+i-1) = tmp;
+				trie = 0; 
+				} 
+			}
+	} while (trie==0); 
+}
+
+/* ---------------Exercice1-Question7---------------------*/
+void supprimeValeur(int * T, int *taille){
+	int i,j; int k;
+	T=Reallouer(T, (*taille));
+	// Supprimer les doublons
+	int fin=0;
+	while (fin!=1) {
+		fin=1;
+		for (i=0;i<(*taille)-1;i++) {
+			for(j=i+1;j<(*taille);) {
+				if (*(T+i)==*(T+j)) {
+					for (k = j; k < (*taille); k++) {
+						*(T+k) = *(T+k+1); 
+					}
+				fin = 0;
+				(*taille)--; 
+				}
+				else{ 
+				j++;
+				}
+			} 
+		} 
+	}
+	T=Reallouer(T, (*taille)); 
+	}
+
+/* ---------------Exercice1-Question8---------------------*/
+void compareTableaux (int *T1, int n1, int *T2, int n2) {
+	int i,j, C=0;
+	if (n1==n2)
+	{
+		for (i=0;i<n1;i++){
+			if (*(T1+i)==*(T2+i)) C++; 
+		}
+		if(C==n1) printf("\n ************** Identiques\n");
+		else if (C==0) printf("\n ************** Ne coincident pas\n");
+		else printf("\n ************** Coincident\n"); 
+	}
+	else {
+		for (i=0;i<n1;i++){
+			for (j=0;j<n2;j++){
+				if (*(T1+i)==*(T2+j)) C++; 
+			}
+		}
+		if(C==0)
+		printf("\n ************** Ne coincident pas\n");
+		else printf("\n ************** Coincident\n"); } 
+}
+
+
+int main ( )
+{
+	int* T;
+	int taille;
+	int* T1;
+	int *T2;
+	int taille1,taille2;
+	int N,ind ;
+	printf("Entrer la taille du tableau : ");
+	scanf("%d",&taille);
+	T=Allouer(taille);
+	saisie(T,taille);
+	affiche(T,taille);
+	printf("\n\n");
+	
+	/* ---------
+	printf("Entrer la nouveau taille du tableau : ");
+	scanf("%d",&taille1);
+	T1=Reallouer(T,taille1);
+	affiche(T1,taille1);
+	
+	
+	
+	printf("\n");
+	printf("Entrer la valeur a inserer : ");
+	scanf("%d",&N);
+	printf("Entrer l indice : ");
+	scanf("%d",&ind);
+	insereValeurs(T,&taille,ind,N);
+	affiche(T,taille);
+	printf("\n");
+	-----------*/
+	
+	tribulle(T,taille);
+	affiche(T,taille);
+	printf("\n");
+	
+	/*-----------
+	supprimeValeur(T,&taille);
+	affiche(T,taille);
+	printf("\n");
+	
+	
+	
+	printf("\n\n\n *********** Comparaison de deux Tableaux ************ \n");
+	printf("Entrer la taille du tableau 1: ");
+	scanf("%d",&taille1);
+	T1=Allouer(taille1);
+	saisie(T1,taille1);
+	affiche(T1,taille1);
+	printf("\n\n");
+	
+	printf("Entrer la taille du tableau 2: ");
+	scanf("%d",&taille2);
+	T2=Allouer(taille2);
+	saisie(T2,taille2);
+	affiche(T2,taille2);
+	
+	compareTableaux (T1, taille1, T2, taille2);
+	-----------*/
+	
+	return 0;
+}

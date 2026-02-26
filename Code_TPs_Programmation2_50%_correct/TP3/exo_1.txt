@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+/////////////////////////////////////////////////
+void binary(int n)
+{
+	int q,r,i=0,N=1;
+	int * T;
+	T=(int *)malloc(N*sizeof(int));
+	if (n!=0)
+	{
+		r=n%2;
+		q=n/2;
+		binary(q);
+		N++;
+		T=(int *)realloc(T,N*sizeof(int));
+		*(T+i)=r;
+		printf("%d",*(T+i));
+		i++;
+	}
+}
+/////////////////////////////////////////////////
+main(){
+	int n;
+	printf("\n Entrer un nombre decimal: ");
+	scanf("%d",&n);
+	printf("\n Equivalent en binaire: " );
+	binary(n);
+}

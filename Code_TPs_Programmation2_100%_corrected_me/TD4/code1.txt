@@ -1,0 +1,168 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+typedef struct Point
+{
+     float x, y;
+} POINT;
+POINT A, B;
+
+void get_points()
+{
+     printf("Enter Values of A(x, y):\n");
+     printf("x = ");
+     scanf("%f", &A.x);
+     printf("y = ");
+     scanf("%f", &A.y);
+     printf("Enter Values of B(x, y):\n");
+     printf("x = ");
+     scanf("%f", &B.x);
+     printf("y = ");
+     scanf("%f", &B.y);
+}
+
+float distance(POINT A, POINT B)
+{
+     float distance;
+     distance = sqrt(
+         fabs(
+             (B.x - A.x) * (B.x - A.x)) +
+         fabs(
+             (B.y - A.y) * (B.y - A.y)));
+     return distance;
+}
+
+// fin_________________________________________________________\\Begin
+
+typedef struct Cyrcle
+{
+     POINT original;
+     float radius;
+} CYRCLE;
+CYRCLE c;
+CYRCLE get_cyrcle()
+{
+     printf("Enter Values of A(x, y):\n");
+     printf("x = ");
+     scanf("%f", &c.original.x);
+     printf("y = ");
+     scanf("%f", &c.original.y);
+     printf("Enter Values of B(x, y):\n");
+     printf("x = ");
+     scanf("%f", &c.original.x);
+     printf("y = ");
+     scanf("%f", &c.original.y);
+     printf("Enter Values of Radius (r):\n");
+     printf("r = ");
+     scanf("%f", &c.radius);
+}
+float cyrcle_area(CYRCLE c)
+{
+     float area, PI = 3.14;
+     area = PI * c.radius * c.radius;
+     return area;
+}
+// fin_________________________________________________________\\Begin
+
+typedef struct Triangle
+{
+     POINT A, B, C;
+} TRIANGLE;
+TRIANGLE t;
+TRIANGLE get_triangle()
+{
+     printf("Enter Values of A(x, y):\n");
+     printf("x = ");
+     scanf("%f", &t.A.x);
+     printf("y = ");
+     scanf("%f", &t.A.y);
+     printf("Enter Values of B(x, y):\n");
+     printf("x = ");
+     scanf("%f", &t.B.x);
+     printf("y = ");
+     scanf("%f", &t.B.y);
+     printf("Enter Values of C(x, y):\n");
+     printf("x = ");
+     scanf("%f", &t.C.x);
+     printf("y = ");
+     scanf("%f", &t.C.y);
+}
+float triangle_area(TRIANGLE t)
+{
+     float area, part1, part2;
+     part1 = (t.B.x - t.A.x) * (t.C.y - t.A.y);
+     part2 = (t.C.x - t.A.x) * (t.B.y - t.A.y);
+     area = fabs(part1 - part2) / 2;
+     return area;
+}
+// fin_________________________________________________________\\Begin
+
+typedef struct Rectangle
+{
+     POINT topLeft, buttonRight;
+} RECTANGLE;
+RECTANGLE r;
+
+RECTANGLE get_rectangle()
+{
+     printf("Enter Values of top left A(x, y):\n");
+     printf("x = ");
+     scanf("%f", &r.topLeft.x);
+     printf("y = ");
+     scanf("%f", &r.topLeft.y);
+     printf("Enter Values of buttom right B(x, y):\n");
+     printf("x = ");
+     scanf("%f", &r.buttonRight.x);
+     printf("y = ");
+     scanf("%f", &r.buttonRight.y);
+}
+float rectangle_area(RECTANGLE r)
+{
+     float area;
+     area = fabs(
+         (r.buttonRight.x - r.topLeft.x) *
+         (r.topLeft.y - r.buttonRight.y));
+     return area;
+}
+
+int main()
+{
+     int choice;
+     printf("\n\n");
+     do
+     {
+          printf("\nEnter choice: \n");
+          printf("1 ----------> Points,\n");
+          printf("2 ----------> Cyrcle,\n");
+          printf("3 ----------> Triangle,\n");
+          printf("4 ----------> Rectangle,\n");
+          printf("5 ----------> Exit,\n");
+          printf("\nChoice: ");
+          scanf("%d", &choice);
+
+          switch (choice)
+          {
+          case 1:
+               get_points();
+               printf("\nDistance = %.2f\n", distance(A, B));
+               break;
+          case 2:
+               get_cyrcle();
+               printf("\nArea of the Cyrcle = %.2f\n", cyrcle_area(c));
+               break;
+          case 3:
+               get_triangle();
+               printf("\nArea of the Triangle = %.2f\n", triangle_area(t));
+               break;
+          case 4:
+               get_rectangle();
+               printf("\nArea of the Rectangle = %.2f\n", rectangle_area(r));
+               break;
+          default:
+               break;
+          }
+     } while (choice < 5);
+
+     return 0;
+}

@@ -1,0 +1,195 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+
+/* Function in use */
+char *allocate(int length);
+char *ADN_squence(char *DNA, int length);
+void display(char *DNA, int length);
+void Count_Nucleotides(char *DNA, int length);
+char *complement(char *DNA, int length);
+void codons(char *DNA, int *length);
+void codon_start(char *DNA, int length);
+void codon_stop(char *DNA, int length);
+void remove_duplications(char *DNA, int length);
+
+/* Function make way clear*/
+int get_length(int length);
+
+int main()
+{
+     int length = get_length(length);
+     char *DNA;
+     DNA = allocate(length);
+     DNA = ADN_squence(DNA, length);
+     printf("\nThe generated squence:_____________________________\n");
+     display(DNA, length);
+
+     Count_Nucleotides(DNA, length);
+     printf("\nComplement the generated squence:_____A becomes T__T becomes A_____C becomes G__G becomes C\n");
+     display(DNA, length);
+     DNA = complement(DNA, length);
+     display(DNA, length);
+
+     codons(DNA, &length);
+     codon_start(DNA, length);
+     codon_stop(DNA, length);
+     remove_duplications(DNA, length);
+
+     printf("\n");
+     return 0;
+}
+
+char *allocate(int length)
+{
+     char *DNA;
+     DNA = (char *)malloc(length * sizeof(char));
+     return DNA;
+}
+
+char *ADN_squence(char *DNA, int length)
+{
+     int i, rand_x;
+     char ADN_letters[4] = {'A', 'T', 'C', 'G'};
+     for (i = 0; i < length; i++)
+     {
+          rand_x = rand() % 4;
+          DNA[i] = ADN_letters[rand_x];
+     }
+     return DNA;
+}
+
+void display(char *DNA, int length)
+{
+     printf("\t\t");
+     for (int i = 0; i < length; i++)
+          printf("%c", *(DNA + i));
+     printf("\n");
+}
+
+void Count_Nucleotides(char *DNA, int length)
+{
+     int i, nA = 0, nT = 0, nC = 0, nG = 0;
+     for (i = 0; i < length; i++)
+     {
+          if ((*(DNA + i) == 'A'))
+               nA++;
+          if ((*(DNA + i) == 'T'))
+               nT++;
+          if ((*(DNA + i) == 'C'))
+               nC++;
+          if ((*(DNA + i) == 'G'))
+               nG++;
+     }
+     printf("\nAfter calculating Cysteines (C), Adenine (A), Thymine (T) and Guanine (G):\n");
+     printf("\t\tNumber of Adenine,\t (A) = %d\n", nA);
+     printf("\t\tNumber of Thymine,\t (T) = %d\n", nT);
+     printf("\t\tNumber of Cysteines,\t (C) = %d\n", nC);
+     printf("\t\tNumber of Guanine,\t (G) = %d\n", nG);
+}
+
+char *complement(char *DNA, int N)
+{
+     int i;
+     for (i = 0; i < N; i++)
+     {
+          if (*(DNA + i) == 'A')
+          {
+               *(DNA + i) = 'T';
+               continue;
+          }
+          if (*(DNA + i) == 'T')
+          {
+               *(DNA + i) = 'A';
+               continue;
+          }
+          if (*(DNA + i) == 'C')
+          {
+               *(DNA + i) = 'G';
+               continue;
+          }
+          if (*(DNA + i) == 'G')
+          {
+               *(DNA + i) = 'C';
+               continue;
+          }
+     }
+     return DNA;
+}
+
+void codons(char *DNA, int *length)
+{
+     int i;
+     printf("\nAfter seperating codons:_________________________\n\t\t");
+     for (i = 0; i < (*length); i += 3)
+     {
+          printf("%c%c%c", *(DNA + i), *(DNA + i + 1), *(DNA + i + 2));
+          printf(" ");
+     }
+     printf("\n");
+}
+
+void codon_start(char *DNA, int length)
+{
+     int i, j, ATG;
+     printf("\nSearching on ATG codon:_________________________\n");
+     for (i = 0; i < length; i++)
+     {
+          if ((DNA[i] == 'A') && (DNA[i + 1] == 'T') && (DNA[i + 2] == 'G'))
+               printf("\t\tCodon ATG found at %d.\n", i + 1);
+          else
+               continue;
+     }
+}
+
+void codon_stop(char *DNA, int length)
+{
+     int i, j, ATG;
+     printf("\nSearching on TAA, TAG & TGA codons:_________________________\n");
+     for (i = 0; i < length; i++)
+     {
+          if ((DNA[i] == 'T') && (DNA[i + 1] == 'A') && (DNA[i + 2] == 'A'))
+               printf("\t\tCodon TAA found at %d.\n", i + 1);
+          if ((DNA[i] == 'T') && (DNA[i + 1] == 'A') && (DNA[i + 2] == 'G'))
+               printf("\t\tCodon TAG found at %d.\n", i + 1);
+          if ((DNA[i] == 'T') && (DNA[i + 1] == 'G') && (DNA[i + 2] == 'A'))
+               printf("\t\tCodon TGA found at %d.\n", i + 1);
+          else
+               continue;
+     }
+}
+
+void remove_duplications(char *DNA, int length)
+{
+     int i, j, k;
+     for (i = 0; i < length - 1; i++)
+     {
+          for (j = i + 1; j < length;)
+          {
+               if ((*(DNA + i)) == (*(DNA + j)))
+               {
+                    for (k = j; k < length; k++)
+                    {
+                         if (k < j)
+                              *(DNA + k) = *(DNA + k);
+                         if (k >= j)
+                              *(DNA + k) = *(DNA + k + 1);
+                    }
+                    length--;
+               }
+               else
+                    j++;
+          }
+     }
+     printf("\nAfter removing the dublicate letters from the codon:_______\n");
+     display(DNA, length);
+}
+
+//////////////////////////////////////////////////////////////////////
+int get_length(int length)
+{
+     printf("Enter number of squences: ");
+     scanf("%d", &length);
+     return length;
+}

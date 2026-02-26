@@ -1,0 +1,151 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<String.h>
+
+///////////////////////////////////// Question1///////////////////////////////////////////////
+char * ADN_Sequences (int N){
+	char *T;
+	int i;
+	int k;
+	char Tab[4]={'A','T','C','G' };
+	for (i=0;i<N;i++){
+		k = rand()%4;
+		T[i]=Tab[k];
+	}
+	return T;
+}
+
+void ecrire_Sequence(char* ch){
+	int N,i; 
+	char * T;
+	FILE * f; 
+	f=fopen(ch,"w");
+	if(f==NULL) printf("\nErreur d ouverture");
+	else { 
+		printf("\nEntrer la longueur de votre sequence : ");
+		scanf("%d",&N);
+		T=ADN_Sequences(N);
+		for(i=0;i<N;i++) fputc(T[i],f);
+		fclose(f);
+	}
+}
+
+void lire_Sequence(char* ch) {
+	FILE *f;
+	char c;
+	f = fopen(ch, "r");
+	if (f==NULL) {
+		printf(" \nErreur lors de l ouverture d un fichier");
+		exit(1); 
+	}
+	while((c=fgetc(f))!=EOF){
+		printf("%c", c); 
+	}
+	fclose(f); 
+}
+
+/////////////////////////////// Question2 /////////////////////////////////////////////////////
+void Compte_Nucleotides(char* ch) {
+	FILE *f;
+	int nba=0, nbt=0, nbc=0, nbg=0;
+	char c;
+	f = fopen(ch, "r");
+	if(f==NULL) {
+		printf("\nErreur lors de l ouverture d un fichier");
+		exit(1); 
+	}
+	while((c=fgetc(f))!=EOF){
+		if(c=='C'){
+			nbc++;
+		}
+		if(c=='A'){
+			nba++;
+		}if(c=='T'){
+			nbt++;
+		}if(c=='G'){
+			nbg++;
+		} 
+	}
+	printf("\n Le nombre des Cysteines est :%d\n",nbc);
+	printf("\n Le nombre des Adenines est :%d\n",nba);
+	printf("\n Le nombre des guanines est :%d\n",nbg);
+	printf("\n Le nombre des Thymines est :%d\n",nbt);
+	fclose(f);
+}
+
+////////////////////////////// Question 3 ////////////////////////////////////////////////////////
+char * ComplementInv(char* ch){
+	char c;
+	FILE *f;
+	int i=0; 
+	int N=1;
+	char * ADN, * seq;
+	ADN=(char*)malloc(N*sizeof(char));
+	f = fopen(ch, "r");
+	if(f==NULL) {
+		printf("\nErreur lors de l ouverture d un fichier");
+		exit(1); 
+	}
+	while((c=fgetc(f))!=EOF){
+		if(c=='C') *(ADN+i)='G';
+		else if(c=='G') *(ADN+i)='C';
+		else if(c=='A') *(ADN+i)='T';
+		else if(c=='T') *(ADN+i)='A';
+		i++;
+		N++;
+	}
+	fclose(f);
+	return ADN;
+	}
+
+//////////////////////////// Question 4 ////////////////////////////////////////////////////////
+void Nbrepetitions(char * ch) {
+	int cpt=0; 
+	char c ;
+	FILE *f;
+	char mot[3] ; 
+	char mot1[4];
+	int i;
+	int nba=0, nbt=0, nbc=0, nbg=0;
+	f = fopen(ch, "r");
+	if(f==NULL) {
+		printf("Erreur lors de l ouverture d un fichier");
+		exit(1); 
+	}
+	while(!feof(f)) {
+		fgets(mot,4,f);
+		printf(" \n mot de 3 chars : %s\t", mot);
+		if(strcmp(mot,"TTT")==0) nbt++;
+		if(strcmp(mot,"AAA")==0) nba++;
+		fgets(mot1,5,f);
+		//printf("\n");
+		printf(" \n \n mot de 4 chars : %s\t", mot1);
+		if(strcmp(mot1,"GGGG")==0) nbg++;
+		if(strcmp(mot1,"CCCC")==0) nbc++;
+		}
+	printf("\n Le nombre de repetitions des Cysteines est :%d\n",nbc);
+	printf("\n Le nombre de repetitions des Adenines est :%d\n",nba);
+	printf("\n Le nombre de repetitions des guanines est :%d\n",nbg);
+	printf("\n Le nombre de repetitions des Thymines est :%d\n",nbt);
+}
+///////////////////////////////////// MAIN /////////////////////////////////////////////////
+
+int main () {
+	char c; char * ADN;
+	int i; int N;
+	ecrire_Sequence("test.txt");
+	/*
+	lire_Sequence("test.txt");
+	printf("\n ********************************* CompteNucleotides : \n ");
+	Compte_Nucleotides("test.txt");
+
+	printf("\n ********************************* BrinCompInv : \n ");
+	ADN=ComplementInv("test.txt");
+	N=strlen(ADN);
+	for(i=0;i<N;i++) printf("%c",*(ADN+N-(i+1)));
+	
+	printf("\n ********************************* Nbrepetitions : \n ");
+	Nbrepetitions("test.txt");
+	*/
+	return 0 ; 
+}

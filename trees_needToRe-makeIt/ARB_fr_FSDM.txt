@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+typedef int Element;
+typedef struct noeud *Pnoeud;
+typedef struct noeud
+{
+     Element val;
+     Pnoeud fg;
+     Pnoeud fd;
+} Noeud;
+typedef Noeud *Arbre_Recherche;
+
+bool recherche_ABR(Arbre_Recherche A, Element e);
+Arbre_Recherche insertion_ABR(Arbre_Recherche A, Element e);
+Arbre_Recherche supprimer_ABR(Arbre_Recherche A, Element e);
+Noeud elementMax_ABR(Arbre_Recherche A);
+Arbre_Recherche supprimerMax_ABR(Arbre_Recherche A);
+// Recherche d’un élément dans un ABR
+bool recherche_ABR(Arbre_Recherche A, Element e)
+{
+     if (est_vide(A) == true)
+          return false; // e n’existe pas dans l’arbre
+     else
+     {
+          if (e == A->val)
+               return true;    // e existe dans l’arbre
+          else if (e < A->val) // on cherche dans le sous arbre gauche
+               return recherche_ABR(A->fg, e);
+          else // on cherche dans le sous arbre gauche
+               return recherche_ABR(A->fd, e);
+     }
+}
+// Insertion d’un élément dans un ABR
+Arbre_Recherche insertion_ABR(Arbre_Recherche A, Element e)
+{
+     if (est_vide(A) == true)
+     {
+          Pnoeud racine = CreerNoeud(e);
+          return Construire(racine, NULL, NULL);
+     }
+     else
+     {
+          if (e > A->val)
+               return Construire(A, gauche(A), insertion_ABR(droite(A), e));
+          else
+               return Construire(A, insertion_ABR(gauche(A), e), droite(A));
+     }
+}
+
+// L’élément max dans un ABR
+PNoeud elementMax_ABR(Arbre_Recherche A)
+{ // l’arbre doit être non vide
+     if (est_vide(droite(A)) == true)
+          return A;
+     else
+          return elementMax_ABR(droite(A));
+}
+
+// Suppression de l’élément max dans un ABR
+Arbre_Recherche supprimerMax(Arbre_Recherche A)
+{ // l’arbre doit être non vide
+     if (est_vide(droite(A)) == true)
+     {
+          return (gauche(A));
+     }
+     else
+     {
+          return Construire(A, gauche(A), supprimerMax(droite(A)));
+     }
+}
+// Suppression d’un élément dans un ABR
+Arbre_Recherche supprimer_ABR(Arbre_Recherche A, Element e)
+{
+     if (est_vide(A) == true)
+          return A;
+     else
+     {
+          if (e > contenu(racine(A)))
+               return Construire(A, gauche(A), supprimer_ABR(droite(A), e));
+          else
+          {
+               if (e < contenu(racine(A)))
+                    return Construire(A, supprimer_ABR(gauche(A), e), droite(A));
+               else
+               {
+                    if (est_vide(droite(A)) == true)
+                         return gauche(A);
+                    else if (est_vide(gauche(A)) == true)
+                         return droite(A);
+                    else
+                         return Construire(elementMax_ABR(gauche(A)), supprimerMax(gauche(A)), droite(A));
+               }
+          }
+     }
+}
+
+// this oprerators on the trees has been taken  from the course of the prof.

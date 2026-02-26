@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int hailstone_x(int x);
+void hailstone_squence(int x);
+
+int main()
+{
+     int x;
+     printf("\nEnter number: ");
+     scanf("%d", &x);
+     hailstone_squence(x);
+     return 0;
+}
+int hailstone_x(int x)
+{
+     if (x % 2 == 0)
+          x = x / 2;
+     else
+          x = (3 * x) + 1;
+     return x;
+}
+void hailstone_squence(int x)
+{
+     int *array, length = 1, i;
+     array = (int *)malloc(length * sizeof(int));
+     i = 0;
+     printf("\nSquence is:__________________________________\n");
+     while (hailstone_x(x) != 1)
+     {
+          length++;
+          array[i] = hailstone_x(x);
+          printf("%d\t", *(array + i));
+          x = hailstone_x(x);
+          i++;
+     }
+     printf("%d\n", 1);
+     printf("It takes us %d steps.\n\n", length);
+}
